@@ -48,7 +48,6 @@ cd phi
 
 Run `./phi --login`, or use `/login` inside Phi, to sign in with your ChatGPT account. Phi currently bundles support for OpenAI’s Codex backend; other providers can be added through extensions.
 
-No Python, Node.js, or separate build system is required.
 
 ### Sandboxing
 
@@ -62,8 +61,7 @@ Type `/help` for a popup with keybindings and command help.
 
 Press the Left arrow twice in NORMAL mode on an empty prompt to background an agent. Run `phi board`, or type `/board` inside Phi, to open the board and move between Working, Waiting, and Saved chats.
 
-For more command-line modes and options, run `phi --help`. If you haven’t added Phi to your `PATH`, use `./phi` from the checkout instead.
-
+For more command-line modes and options, run `phi --help`.
 ## Customisation
 
 Phi is very customisable—ask your agent to make it your own. These bundled themes give a taste of what’s possible:
