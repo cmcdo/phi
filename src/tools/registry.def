@@ -1,0 +1,11 @@
+/* Add PHI_TOOL(name) after creating tools/name.c with a phi_tool_name descriptor. */
+PHI_TOOL(read)
+PHI_TOOL(write)
+PHI_TOOL(edit)
+PHI_TOOL(apply_patch)
+PHI_TOOL(git)
+PHI_TOOL(bash)
+PHI_TOOL(bash_start)
+PHI_TOOL(bash_poll)
+PHI_TOOL(bash_write)
+PHI_TOOL(bash_kill)

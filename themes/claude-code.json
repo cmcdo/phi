@@ -1,0 +1,253 @@
+{
+  "accent": "#d77757",
+  "text": "#c8d8c8",
+  "user_text": "#ffffff",
+  "user_background": "#373737",
+  "muted": "#999999",
+  "tool_background": "#050806",
+  "tool_text": "#c8d8c8",
+  "tool_heading": "#c8d8c8",
+  "code_background": "#050806",
+  "code_text": "#ffffff",
+  "diff_removed": "#ffb3ad",
+  "diff_added": "#d0ffc5",
+  "diff_context": "#c8d8c8",
+  "diff_removed_background": "#3d0100",
+  "diff_added_background": "#022800",
+  "spinner": "#d77757",
+  "tool_success": "#4eba65",
+  "error": "#ff6b80",
+  "glyph.card": "●",
+  "glyph.reply": "●",
+  "glyph.output": "⎿",
+  "glyph.fold": "●",
+  "glyph.prompt": "❯",
+  "user.bold": false,
+  "user.glyph": "muted",
+  "spinner.frames": "·✢✳✶✻✽✻✶✳✢",
+  "spinner.interval": 120,
+  "spinner.words": [
+    "Pondering…",
+    "Noodling…",
+    "Percolating…",
+    "Ionizing…",
+    "Churning…",
+    "Musing…",
+    "Schlepping…",
+    "Moseying…",
+    "Cogitating…",
+    "Simmering…"
+  ],
+  "spinner.rotate": 6,
+  "spinner.shimmer": true,
+  "spinner.stats": true,
+  "spinner.tips": [],
+  "prompt.border": "line",
+  "tool.title": "{Name}({detail})",
+  "tool.path": "full",
+  "tool.border": "none",
+  "tool.padding": 0,
+  "tool.spacing": 1,
+  "tool.max_width": 0,
+  "tool.duration": false,
+  "tool.change_counts": true,
+  "tool.heading_bold": true,
+  "diff.style": "text",
+  "diff.line_numbers": true,
+  "diff.gutter_width": 2,
+  "diff.saved_label": "compact",
+  "approval.style": "menu",
+  "welcome.title": "Claude Code",
+  "welcome.lines": [
+    "{model} · {effort}",
+    "{path}"
+  ],
+  "mascot": false,
+  "welcome.art": [
+    " ▐▛███▛█",
+    "▝▜██████▀",
+    " ▝▝   ▝▝ "
+  ],
+  "layout.margin": 0,
+  "palette.exact": true,
+  "background": "#050806",
+  "border": "#888888",
+  "tool_rule": "#888888",
+  "inline_code": "#b9b3ff",
+  "inline_code_background": "#050806",
+  "syntax_keyword": "#c792ea",
+  "syntax_string": "#a8cc8c",
+  "syntax_number": "#e5b567",
+  "syntax_comment": "#888888",
+  "syntax_function": "#82aaff",
+  "syntax_operator": "#cccccc",
+  "header.visible": false,
+  "welcome": "phi",
+  "welcome.transition": "none",
+  "glyph.done": "✻",
+  "user.padding_y": 0,
+  "layout.compact": true,
+  "composer.padding": 0,
+  "composer.min_rows": 1,
+  "composer.max_rows": 6,
+  "composer.label": "",
+  "composer.hint": "",
+  "composer.elements": [],
+  "footer.visible": true,
+  "footer.dim": false,
+  "footer.rows": 1,
+  "footer.lines": [],
+  "footer.left": "  -- {mode} --",
+  "footer.right": "",
+  "tool.padding_y": 0,
+  "tool.indent": 0,
+  "tool.heading_gap": 0,
+  "tool.expanded": false,
+  "tool.live": "grouped",
+  "tool.hide_output": ["read"],
+  "tool.max_lines": 10,
+  "turn.done": [
+    "Cooked",
+    "Worked",
+    "Baked",
+    "Brewed"
+  ],
+  "turn.clock": true,
+  "thinking.visible": false,
+  "notice.style": "plain",
+  "diff.sign": "before",
+  "tool.line_numbers": true,
+  "welcome.art.blink": [
+    " ▐██████",
+    "▝▜██████▀",
+    " ▝▝   ▝▝ "
+  ],
+  "welcome.art.gestures": [
+    {
+      "interval": 220,
+      "frames": [
+        [
+          " ▐████▛█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ],
+        [
+          " ▐████▛█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ],
+        [
+          " ▐▛███▛█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ]
+      ]
+    },
+    {
+      "interval": 280,
+      "frames": [
+        [
+          " ▐▜███▜█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ],
+        [
+          " ▐▜███▜█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ],
+        [
+          " ▐▛███▛█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ]
+      ]
+    },
+    {
+      "interval": 260,
+      "frames": [
+        [
+          " ▐▙███▙█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ],
+        [
+          " ▐▙███▙█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ],
+        [
+          " ▐▛███▛█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ]
+      ]
+    },
+    {
+      "interval": 160,
+      "frames": [
+        [
+          " ▐▛███▛█",
+          "▝▜██████▀",
+          " ▘▝   ▝▘ "
+        ],
+        [
+          " ▐▛███▛█",
+          "▝▜██████▀",
+          " ▝▘   ▘▝ "
+        ],
+        [
+          " ▐▛███▛█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ]
+      ]
+    },
+    {
+      "interval": 110,
+      "frames": [
+        [
+          " ▐██████",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ],
+        [
+          " ▐▛███▛█",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ],
+        [
+          " ▐██████",
+          "▝▜██████▀",
+          " ▝▝   ▝▝ "
+        ]
+      ]
+    },
+    {
+      "interval": 200,
+      "frames": [
+        [
+          " ▐▛███▛█",
+          "▗▜██████▀",
+          " ▝▝   ▝▝ "
+        ],
+        [
+          " ▐▛███▛█",
+          "▘▜██████▀",
+          " ▝▝   ▝▝ "
+        ],
+        [
+          " ▐▛███▛█",
+          "▗▜██████▀",
+          " ▝▝   ▝▝ "
+        ]
+      ]
+    }
+  ],
+  "welcome.art.intro": [
+    5,
+    4,
+    6,
+    1
+  ]
+}

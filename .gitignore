@@ -1,0 +1,16 @@
+# Build outputs
+/build/
+/phi
+/phi-host
+
+# Local Python caches
+__pycache__/
+*.pyc
+
+# Credentials and local environment
+auth.json
+.env
+.env.*
+*.pem
+*.key
+*.jsonl

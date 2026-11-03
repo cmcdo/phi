@@ -1,0 +1,10 @@
+# RGB values 0..0xffffff are literal; tagged 0x1000000..0x10000ff
+# preserve the terminal's indexed palette, including user-defined ANSI colours.
+# RGB is essential: ncurses must use direct colours, not allocate a 16M palette.
+phi-direct|Phi RGB terminal (xterm-compatible),
+    RGB,
+    colors#0x1000100, pairs#0x10000,
+    ccc@, initc@, initp@, oc@,
+    setaf=\E[%?%p1%{16777215}%>%t38;5;%p1%{16777216}%-%d%e38;2;%p1%{65536}%/%d;%p1%{256}%/%{255}%&%d;%p1%{255}%&%d%;m,
+    setab=\E[%?%p1%{16777215}%>%t48;5;%p1%{16777216}%-%d%e48;2;%p1%{65536}%/%d;%p1%{256}%/%{255}%&%d;%p1%{255}%&%d%;m,
+    use=xterm-256color,

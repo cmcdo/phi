@@ -1,0 +1,1382 @@
+[
+  {
+    "application": "Phi",
+    "trial": 1,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397094,
+            "name": "phi",
+            "pss_kib": 1653,
+            "rss_kib": 8672,
+            "private_kib": 1180
+          },
+          {
+            "pid": 397097,
+            "name": "phi host",
+            "pss_kib": 154,
+            "rss_kib": 1508,
+            "private_kib": 140
+          },
+          {
+            "pid": 397098,
+            "name": "phi chat",
+            "pss_kib": 4930,
+            "rss_kib": 19236,
+            "private_kib": 4224
+          }
+        ],
+        "pss_kib": 6737,
+        "rss_kib": 29416,
+        "private_kib": 5544
+      },
+      {
+        "processes": [
+          {
+            "pid": 397094,
+            "name": "phi",
+            "pss_kib": 1653,
+            "rss_kib": 8672,
+            "private_kib": 1180
+          },
+          {
+            "pid": 397097,
+            "name": "phi host",
+            "pss_kib": 154,
+            "rss_kib": 1508,
+            "private_kib": 140
+          },
+          {
+            "pid": 397098,
+            "name": "phi chat",
+            "pss_kib": 4930,
+            "rss_kib": 19236,
+            "private_kib": 4224
+          }
+        ],
+        "pss_kib": 6737,
+        "rss_kib": 29416,
+        "private_kib": 5544
+      },
+      {
+        "processes": [
+          {
+            "pid": 397094,
+            "name": "phi",
+            "pss_kib": 1653,
+            "rss_kib": 8672,
+            "private_kib": 1180
+          },
+          {
+            "pid": 397097,
+            "name": "phi host",
+            "pss_kib": 154,
+            "rss_kib": 1508,
+            "private_kib": 140
+          },
+          {
+            "pid": 397098,
+            "name": "phi chat",
+            "pss_kib": 4930,
+            "rss_kib": 19236,
+            "private_kib": 4224
+          }
+        ],
+        "pss_kib": 6737,
+        "rss_kib": 29416,
+        "private_kib": 5544
+      },
+      {
+        "processes": [
+          {
+            "pid": 397094,
+            "name": "phi",
+            "pss_kib": 1653,
+            "rss_kib": 8672,
+            "private_kib": 1180
+          },
+          {
+            "pid": 397097,
+            "name": "phi host",
+            "pss_kib": 154,
+            "rss_kib": 1508,
+            "private_kib": 140
+          },
+          {
+            "pid": 397098,
+            "name": "phi chat",
+            "pss_kib": 4930,
+            "rss_kib": 19236,
+            "private_kib": 4224
+          }
+        ],
+        "pss_kib": 6737,
+        "rss_kib": 29416,
+        "private_kib": 5544
+      },
+      {
+        "processes": [
+          {
+            "pid": 397094,
+            "name": "phi",
+            "pss_kib": 1653,
+            "rss_kib": 8672,
+            "private_kib": 1180
+          },
+          {
+            "pid": 397097,
+            "name": "phi host",
+            "pss_kib": 154,
+            "rss_kib": 1508,
+            "private_kib": 140
+          },
+          {
+            "pid": 397098,
+            "name": "phi chat",
+            "pss_kib": 4930,
+            "rss_kib": 19236,
+            "private_kib": 4224
+          }
+        ],
+        "pss_kib": 6737,
+        "rss_kib": 29416,
+        "private_kib": 5544
+      }
+    ],
+    "pss_kib": 6737,
+    "rss_kib": 29416,
+    "private_kib": 5544,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Pi",
+    "trial": 1,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397105,
+            "name": "pi",
+            "pss_kib": 127170,
+            "rss_kib": 132172,
+            "private_kib": 126640
+          }
+        ],
+        "pss_kib": 127170,
+        "rss_kib": 132172,
+        "private_kib": 126640
+      },
+      {
+        "processes": [
+          {
+            "pid": 397105,
+            "name": "pi",
+            "pss_kib": 127170,
+            "rss_kib": 132172,
+            "private_kib": 126640
+          }
+        ],
+        "pss_kib": 127170,
+        "rss_kib": 132172,
+        "private_kib": 126640
+      },
+      {
+        "processes": [
+          {
+            "pid": 397105,
+            "name": "pi",
+            "pss_kib": 111654,
+            "rss_kib": 116656,
+            "private_kib": 111124
+          }
+        ],
+        "pss_kib": 111654,
+        "rss_kib": 116656,
+        "private_kib": 111124
+      },
+      {
+        "processes": [
+          {
+            "pid": 397105,
+            "name": "pi",
+            "pss_kib": 111654,
+            "rss_kib": 116656,
+            "private_kib": 111124
+          }
+        ],
+        "pss_kib": 111654,
+        "rss_kib": 116656,
+        "private_kib": 111124
+      },
+      {
+        "processes": [
+          {
+            "pid": 397105,
+            "name": "pi",
+            "pss_kib": 110634,
+            "rss_kib": 115636,
+            "private_kib": 110104
+          }
+        ],
+        "pss_kib": 110634,
+        "rss_kib": 115636,
+        "private_kib": 110104
+      }
+    ],
+    "pss_kib": 111654,
+    "rss_kib": 116656,
+    "private_kib": 111124,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Claude Code",
+    "trial": 1,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397125,
+            "name": "claude",
+            "pss_kib": 248130,
+            "rss_kib": 251628,
+            "private_kib": 248060
+          }
+        ],
+        "pss_kib": 248130,
+        "rss_kib": 251628,
+        "private_kib": 248060
+      },
+      {
+        "processes": [
+          {
+            "pid": 397125,
+            "name": "claude",
+            "pss_kib": 248134,
+            "rss_kib": 251632,
+            "private_kib": 248064
+          }
+        ],
+        "pss_kib": 248134,
+        "rss_kib": 251632,
+        "private_kib": 248064
+      },
+      {
+        "processes": [
+          {
+            "pid": 397125,
+            "name": "claude",
+            "pss_kib": 248126,
+            "rss_kib": 251624,
+            "private_kib": 248056
+          }
+        ],
+        "pss_kib": 248126,
+        "rss_kib": 251624,
+        "private_kib": 248056
+      },
+      {
+        "processes": [
+          {
+            "pid": 397125,
+            "name": "claude",
+            "pss_kib": 248122,
+            "rss_kib": 251620,
+            "private_kib": 248052
+          }
+        ],
+        "pss_kib": 248122,
+        "rss_kib": 251620,
+        "private_kib": 248052
+      },
+      {
+        "processes": [
+          {
+            "pid": 397125,
+            "name": "claude",
+            "pss_kib": 248130,
+            "rss_kib": 251628,
+            "private_kib": 248060
+          }
+        ],
+        "pss_kib": 248130,
+        "rss_kib": 251628,
+        "private_kib": 248060
+      }
+    ],
+    "pss_kib": 248130,
+    "rss_kib": 251628,
+    "private_kib": 248060,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Codex",
+    "trial": 1,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397196,
+            "name": "codex",
+            "pss_kib": 577072,
+            "rss_kib": 622580,
+            "private_kib": 531588
+          },
+          {
+            "pid": 397226,
+            "name": "codex",
+            "pss_kib": 416660,
+            "rss_kib": 475640,
+            "private_kib": 357704
+          },
+          {
+            "pid": 397275,
+            "name": "codex",
+            "pss_kib": 68980,
+            "rss_kib": 127868,
+            "private_kib": 10100
+          }
+        ],
+        "pss_kib": 1062712,
+        "rss_kib": 1226088,
+        "private_kib": 899392
+      },
+      {
+        "processes": [
+          {
+            "pid": 397196,
+            "name": "codex",
+            "pss_kib": 577072,
+            "rss_kib": 622580,
+            "private_kib": 531588
+          },
+          {
+            "pid": 397226,
+            "name": "codex",
+            "pss_kib": 416760,
+            "rss_kib": 475740,
+            "private_kib": 357804
+          },
+          {
+            "pid": 397275,
+            "name": "codex",
+            "pss_kib": 68980,
+            "rss_kib": 127868,
+            "private_kib": 10100
+          }
+        ],
+        "pss_kib": 1062812,
+        "rss_kib": 1226188,
+        "private_kib": 899492
+      },
+      {
+        "processes": [
+          {
+            "pid": 397196,
+            "name": "codex",
+            "pss_kib": 577072,
+            "rss_kib": 622580,
+            "private_kib": 531588
+          },
+          {
+            "pid": 397226,
+            "name": "codex",
+            "pss_kib": 416760,
+            "rss_kib": 475740,
+            "private_kib": 357804
+          },
+          {
+            "pid": 397275,
+            "name": "codex",
+            "pss_kib": 68980,
+            "rss_kib": 127868,
+            "private_kib": 10100
+          }
+        ],
+        "pss_kib": 1062812,
+        "rss_kib": 1226188,
+        "private_kib": 899492
+      },
+      {
+        "processes": [
+          {
+            "pid": 397196,
+            "name": "codex",
+            "pss_kib": 577072,
+            "rss_kib": 622580,
+            "private_kib": 531588
+          },
+          {
+            "pid": 397226,
+            "name": "codex",
+            "pss_kib": 416760,
+            "rss_kib": 475740,
+            "private_kib": 357804
+          },
+          {
+            "pid": 397275,
+            "name": "codex",
+            "pss_kib": 68980,
+            "rss_kib": 127868,
+            "private_kib": 10100
+          }
+        ],
+        "pss_kib": 1062812,
+        "rss_kib": 1226188,
+        "private_kib": 899492
+      },
+      {
+        "processes": [
+          {
+            "pid": 397196,
+            "name": "codex",
+            "pss_kib": 577072,
+            "rss_kib": 622580,
+            "private_kib": 531588
+          },
+          {
+            "pid": 397226,
+            "name": "codex",
+            "pss_kib": 416756,
+            "rss_kib": 475736,
+            "private_kib": 357800
+          },
+          {
+            "pid": 397275,
+            "name": "codex",
+            "pss_kib": 68980,
+            "rss_kib": 127868,
+            "private_kib": 10100
+          }
+        ],
+        "pss_kib": 1062808,
+        "rss_kib": 1226184,
+        "private_kib": 899488
+      }
+    ],
+    "pss_kib": 1062812,
+    "rss_kib": 1226188,
+    "private_kib": 899492,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Pi",
+    "trial": 2,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397388,
+            "name": "pi",
+            "pss_kib": 127722,
+            "rss_kib": 132724,
+            "private_kib": 127192
+          }
+        ],
+        "pss_kib": 127722,
+        "rss_kib": 132724,
+        "private_kib": 127192
+      },
+      {
+        "processes": [
+          {
+            "pid": 397388,
+            "name": "pi",
+            "pss_kib": 127722,
+            "rss_kib": 132724,
+            "private_kib": 127192
+          }
+        ],
+        "pss_kib": 127722,
+        "rss_kib": 132724,
+        "private_kib": 127192
+      },
+      {
+        "processes": [
+          {
+            "pid": 397388,
+            "name": "pi",
+            "pss_kib": 112386,
+            "rss_kib": 117388,
+            "private_kib": 111856
+          }
+        ],
+        "pss_kib": 112386,
+        "rss_kib": 117388,
+        "private_kib": 111856
+      },
+      {
+        "processes": [
+          {
+            "pid": 397388,
+            "name": "pi",
+            "pss_kib": 112386,
+            "rss_kib": 117388,
+            "private_kib": 111856
+          }
+        ],
+        "pss_kib": 112386,
+        "rss_kib": 117388,
+        "private_kib": 111856
+      },
+      {
+        "processes": [
+          {
+            "pid": 397388,
+            "name": "pi",
+            "pss_kib": 111294,
+            "rss_kib": 116296,
+            "private_kib": 110764
+          }
+        ],
+        "pss_kib": 111294,
+        "rss_kib": 116296,
+        "private_kib": 110764
+      }
+    ],
+    "pss_kib": 112386,
+    "rss_kib": 117388,
+    "private_kib": 111856,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Claude Code",
+    "trial": 2,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397409,
+            "name": "claude",
+            "pss_kib": 249832,
+            "rss_kib": 253264,
+            "private_kib": 249764
+          }
+        ],
+        "pss_kib": 249832,
+        "rss_kib": 253264,
+        "private_kib": 249764
+      },
+      {
+        "processes": [
+          {
+            "pid": 397409,
+            "name": "claude",
+            "pss_kib": 249840,
+            "rss_kib": 253272,
+            "private_kib": 249772
+          }
+        ],
+        "pss_kib": 249840,
+        "rss_kib": 253272,
+        "private_kib": 249772
+      },
+      {
+        "processes": [
+          {
+            "pid": 397409,
+            "name": "claude",
+            "pss_kib": 249848,
+            "rss_kib": 253280,
+            "private_kib": 249780
+          }
+        ],
+        "pss_kib": 249848,
+        "rss_kib": 253280,
+        "private_kib": 249780
+      },
+      {
+        "processes": [
+          {
+            "pid": 397409,
+            "name": "claude",
+            "pss_kib": 249836,
+            "rss_kib": 253268,
+            "private_kib": 249768
+          }
+        ],
+        "pss_kib": 249836,
+        "rss_kib": 253268,
+        "private_kib": 249768
+      },
+      {
+        "processes": [
+          {
+            "pid": 397409,
+            "name": "claude",
+            "pss_kib": 249844,
+            "rss_kib": 253276,
+            "private_kib": 249776
+          }
+        ],
+        "pss_kib": 249844,
+        "rss_kib": 253276,
+        "private_kib": 249776
+      }
+    ],
+    "pss_kib": 249840,
+    "rss_kib": 253272,
+    "private_kib": 249772,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Codex",
+    "trial": 2,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397478,
+            "name": "codex",
+            "pss_kib": 570816,
+            "rss_kib": 616348,
+            "private_kib": 525308
+          },
+          {
+            "pid": 397509,
+            "name": "codex",
+            "pss_kib": 482968,
+            "rss_kib": 541916,
+            "private_kib": 424044
+          },
+          {
+            "pid": 397555,
+            "name": "codex",
+            "pss_kib": 68964,
+            "rss_kib": 127820,
+            "private_kib": 10116
+          }
+        ],
+        "pss_kib": 1122748,
+        "rss_kib": 1286084,
+        "private_kib": 959468
+      },
+      {
+        "processes": [
+          {
+            "pid": 397478,
+            "name": "codex",
+            "pss_kib": 570816,
+            "rss_kib": 616348,
+            "private_kib": 525308
+          },
+          {
+            "pid": 397509,
+            "name": "codex",
+            "pss_kib": 482968,
+            "rss_kib": 541916,
+            "private_kib": 424044
+          },
+          {
+            "pid": 397555,
+            "name": "codex",
+            "pss_kib": 68964,
+            "rss_kib": 127820,
+            "private_kib": 10116
+          }
+        ],
+        "pss_kib": 1122748,
+        "rss_kib": 1286084,
+        "private_kib": 959468
+      },
+      {
+        "processes": [
+          {
+            "pid": 397478,
+            "name": "codex",
+            "pss_kib": 570816,
+            "rss_kib": 616348,
+            "private_kib": 525308
+          },
+          {
+            "pid": 397509,
+            "name": "codex",
+            "pss_kib": 482968,
+            "rss_kib": 541916,
+            "private_kib": 424044
+          },
+          {
+            "pid": 397555,
+            "name": "codex",
+            "pss_kib": 68964,
+            "rss_kib": 127820,
+            "private_kib": 10116
+          }
+        ],
+        "pss_kib": 1122748,
+        "rss_kib": 1286084,
+        "private_kib": 959468
+      },
+      {
+        "processes": [
+          {
+            "pid": 397478,
+            "name": "codex",
+            "pss_kib": 570816,
+            "rss_kib": 616348,
+            "private_kib": 525308
+          },
+          {
+            "pid": 397509,
+            "name": "codex",
+            "pss_kib": 482972,
+            "rss_kib": 541920,
+            "private_kib": 424048
+          },
+          {
+            "pid": 397555,
+            "name": "codex",
+            "pss_kib": 68964,
+            "rss_kib": 127820,
+            "private_kib": 10116
+          }
+        ],
+        "pss_kib": 1122752,
+        "rss_kib": 1286088,
+        "private_kib": 959472
+      },
+      {
+        "processes": [
+          {
+            "pid": 397478,
+            "name": "codex",
+            "pss_kib": 570816,
+            "rss_kib": 616348,
+            "private_kib": 525308
+          },
+          {
+            "pid": 397509,
+            "name": "codex",
+            "pss_kib": 482972,
+            "rss_kib": 541920,
+            "private_kib": 424048
+          },
+          {
+            "pid": 397555,
+            "name": "codex",
+            "pss_kib": 68964,
+            "rss_kib": 127820,
+            "private_kib": 10116
+          }
+        ],
+        "pss_kib": 1122752,
+        "rss_kib": 1286088,
+        "private_kib": 959472
+      }
+    ],
+    "pss_kib": 1122748,
+    "rss_kib": 1286084,
+    "private_kib": 959468,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Phi",
+    "trial": 2,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397651,
+            "name": "phi",
+            "pss_kib": 1689,
+            "rss_kib": 8704,
+            "private_kib": 1232
+          },
+          {
+            "pid": 397654,
+            "name": "phi host",
+            "pss_kib": 162,
+            "rss_kib": 1508,
+            "private_kib": 148
+          },
+          {
+            "pid": 397655,
+            "name": "phi chat",
+            "pss_kib": 4913,
+            "rss_kib": 19072,
+            "private_kib": 4200
+          }
+        ],
+        "pss_kib": 6764,
+        "rss_kib": 29284,
+        "private_kib": 5580
+      },
+      {
+        "processes": [
+          {
+            "pid": 397651,
+            "name": "phi",
+            "pss_kib": 1689,
+            "rss_kib": 8704,
+            "private_kib": 1232
+          },
+          {
+            "pid": 397654,
+            "name": "phi host",
+            "pss_kib": 162,
+            "rss_kib": 1508,
+            "private_kib": 148
+          },
+          {
+            "pid": 397655,
+            "name": "phi chat",
+            "pss_kib": 4913,
+            "rss_kib": 19072,
+            "private_kib": 4200
+          }
+        ],
+        "pss_kib": 6764,
+        "rss_kib": 29284,
+        "private_kib": 5580
+      },
+      {
+        "processes": [
+          {
+            "pid": 397651,
+            "name": "phi",
+            "pss_kib": 1689,
+            "rss_kib": 8704,
+            "private_kib": 1232
+          },
+          {
+            "pid": 397654,
+            "name": "phi host",
+            "pss_kib": 162,
+            "rss_kib": 1508,
+            "private_kib": 148
+          },
+          {
+            "pid": 397655,
+            "name": "phi chat",
+            "pss_kib": 4913,
+            "rss_kib": 19072,
+            "private_kib": 4200
+          }
+        ],
+        "pss_kib": 6764,
+        "rss_kib": 29284,
+        "private_kib": 5580
+      },
+      {
+        "processes": [
+          {
+            "pid": 397651,
+            "name": "phi",
+            "pss_kib": 1689,
+            "rss_kib": 8704,
+            "private_kib": 1232
+          },
+          {
+            "pid": 397654,
+            "name": "phi host",
+            "pss_kib": 162,
+            "rss_kib": 1508,
+            "private_kib": 148
+          },
+          {
+            "pid": 397655,
+            "name": "phi chat",
+            "pss_kib": 4913,
+            "rss_kib": 19072,
+            "private_kib": 4200
+          }
+        ],
+        "pss_kib": 6764,
+        "rss_kib": 29284,
+        "private_kib": 5580
+      },
+      {
+        "processes": [
+          {
+            "pid": 397651,
+            "name": "phi",
+            "pss_kib": 1689,
+            "rss_kib": 8704,
+            "private_kib": 1232
+          },
+          {
+            "pid": 397654,
+            "name": "phi host",
+            "pss_kib": 162,
+            "rss_kib": 1508,
+            "private_kib": 148
+          },
+          {
+            "pid": 397655,
+            "name": "phi chat",
+            "pss_kib": 4913,
+            "rss_kib": 19072,
+            "private_kib": 4200
+          }
+        ],
+        "pss_kib": 6764,
+        "rss_kib": 29284,
+        "private_kib": 5580
+      }
+    ],
+    "pss_kib": 6764,
+    "rss_kib": 29284,
+    "private_kib": 5580,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Claude Code",
+    "trial": 3,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397676,
+            "name": "claude",
+            "pss_kib": 247149,
+            "rss_kib": 250628,
+            "private_kib": 247080
+          }
+        ],
+        "pss_kib": 247149,
+        "rss_kib": 250628,
+        "private_kib": 247080
+      },
+      {
+        "processes": [
+          {
+            "pid": 397676,
+            "name": "claude",
+            "pss_kib": 247153,
+            "rss_kib": 250632,
+            "private_kib": 247084
+          }
+        ],
+        "pss_kib": 247153,
+        "rss_kib": 250632,
+        "private_kib": 247084
+      },
+      {
+        "processes": [
+          {
+            "pid": 397676,
+            "name": "claude",
+            "pss_kib": 247145,
+            "rss_kib": 250624,
+            "private_kib": 247076
+          }
+        ],
+        "pss_kib": 247145,
+        "rss_kib": 250624,
+        "private_kib": 247076
+      },
+      {
+        "processes": [
+          {
+            "pid": 397676,
+            "name": "claude",
+            "pss_kib": 247157,
+            "rss_kib": 250636,
+            "private_kib": 247088
+          }
+        ],
+        "pss_kib": 247157,
+        "rss_kib": 250636,
+        "private_kib": 247088
+      },
+      {
+        "processes": [
+          {
+            "pid": 397676,
+            "name": "claude",
+            "pss_kib": 247149,
+            "rss_kib": 250628,
+            "private_kib": 247080
+          }
+        ],
+        "pss_kib": 247149,
+        "rss_kib": 250628,
+        "private_kib": 247080
+      }
+    ],
+    "pss_kib": 247149,
+    "rss_kib": 250628,
+    "private_kib": 247080,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Codex",
+    "trial": 3,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397750,
+            "name": "codex",
+            "pss_kib": 607360,
+            "rss_kib": 607448,
+            "private_kib": 607280
+          },
+          {
+            "pid": 397781,
+            "name": "codex",
+            "pss_kib": 448384,
+            "rss_kib": 507352,
+            "private_kib": 389424
+          },
+          {
+            "pid": 397829,
+            "name": "codex",
+            "pss_kib": 69140,
+            "rss_kib": 128028,
+            "private_kib": 10260
+          }
+        ],
+        "pss_kib": 1124884,
+        "rss_kib": 1242828,
+        "private_kib": 1006964
+      },
+      {
+        "processes": [
+          {
+            "pid": 397750,
+            "name": "codex",
+            "pss_kib": 607360,
+            "rss_kib": 607448,
+            "private_kib": 607280
+          },
+          {
+            "pid": 397781,
+            "name": "codex",
+            "pss_kib": 448384,
+            "rss_kib": 507352,
+            "private_kib": 389424
+          },
+          {
+            "pid": 397829,
+            "name": "codex",
+            "pss_kib": 69140,
+            "rss_kib": 128028,
+            "private_kib": 10260
+          }
+        ],
+        "pss_kib": 1124884,
+        "rss_kib": 1242828,
+        "private_kib": 1006964
+      },
+      {
+        "processes": [
+          {
+            "pid": 397750,
+            "name": "codex",
+            "pss_kib": 607360,
+            "rss_kib": 607448,
+            "private_kib": 607280
+          },
+          {
+            "pid": 397781,
+            "name": "codex",
+            "pss_kib": 448404,
+            "rss_kib": 507372,
+            "private_kib": 389444
+          },
+          {
+            "pid": 397829,
+            "name": "codex",
+            "pss_kib": 69140,
+            "rss_kib": 128028,
+            "private_kib": 10260
+          }
+        ],
+        "pss_kib": 1124904,
+        "rss_kib": 1242848,
+        "private_kib": 1006984
+      },
+      {
+        "processes": [
+          {
+            "pid": 397750,
+            "name": "codex",
+            "pss_kib": 607360,
+            "rss_kib": 607448,
+            "private_kib": 607280
+          },
+          {
+            "pid": 397781,
+            "name": "codex",
+            "pss_kib": 447936,
+            "rss_kib": 506904,
+            "private_kib": 388976
+          },
+          {
+            "pid": 397829,
+            "name": "codex",
+            "pss_kib": 69140,
+            "rss_kib": 128028,
+            "private_kib": 10260
+          }
+        ],
+        "pss_kib": 1124436,
+        "rss_kib": 1242380,
+        "private_kib": 1006516
+      },
+      {
+        "processes": [
+          {
+            "pid": 397750,
+            "name": "codex",
+            "pss_kib": 607360,
+            "rss_kib": 607448,
+            "private_kib": 607280
+          },
+          {
+            "pid": 397781,
+            "name": "codex",
+            "pss_kib": 448180,
+            "rss_kib": 507148,
+            "private_kib": 389220
+          },
+          {
+            "pid": 397829,
+            "name": "codex",
+            "pss_kib": 69140,
+            "rss_kib": 128028,
+            "private_kib": 10260
+          }
+        ],
+        "pss_kib": 1124680,
+        "rss_kib": 1242624,
+        "private_kib": 1006760
+      }
+    ],
+    "pss_kib": 1124884,
+    "rss_kib": 1242828,
+    "private_kib": 1006964,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Phi",
+    "trial": 3,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 397958,
+            "name": "phi",
+            "pss_kib": 1750,
+            "rss_kib": 8824,
+            "private_kib": 1240
+          },
+          {
+            "pid": 397961,
+            "name": "phi host",
+            "pss_kib": 159,
+            "rss_kib": 1592,
+            "private_kib": 144
+          },
+          {
+            "pid": 397962,
+            "name": "phi chat",
+            "pss_kib": 4737,
+            "rss_kib": 19016,
+            "private_kib": 3996
+          }
+        ],
+        "pss_kib": 6646,
+        "rss_kib": 29432,
+        "private_kib": 5380
+      },
+      {
+        "processes": [
+          {
+            "pid": 397958,
+            "name": "phi",
+            "pss_kib": 1750,
+            "rss_kib": 8824,
+            "private_kib": 1240
+          },
+          {
+            "pid": 397961,
+            "name": "phi host",
+            "pss_kib": 159,
+            "rss_kib": 1592,
+            "private_kib": 144
+          },
+          {
+            "pid": 397962,
+            "name": "phi chat",
+            "pss_kib": 4737,
+            "rss_kib": 19016,
+            "private_kib": 3996
+          }
+        ],
+        "pss_kib": 6646,
+        "rss_kib": 29432,
+        "private_kib": 5380
+      },
+      {
+        "processes": [
+          {
+            "pid": 397958,
+            "name": "phi",
+            "pss_kib": 1750,
+            "rss_kib": 8824,
+            "private_kib": 1240
+          },
+          {
+            "pid": 397961,
+            "name": "phi host",
+            "pss_kib": 159,
+            "rss_kib": 1592,
+            "private_kib": 144
+          },
+          {
+            "pid": 397962,
+            "name": "phi chat",
+            "pss_kib": 4737,
+            "rss_kib": 19016,
+            "private_kib": 3996
+          }
+        ],
+        "pss_kib": 6646,
+        "rss_kib": 29432,
+        "private_kib": 5380
+      },
+      {
+        "processes": [
+          {
+            "pid": 397958,
+            "name": "phi",
+            "pss_kib": 1750,
+            "rss_kib": 8824,
+            "private_kib": 1240
+          },
+          {
+            "pid": 397961,
+            "name": "phi host",
+            "pss_kib": 159,
+            "rss_kib": 1592,
+            "private_kib": 144
+          },
+          {
+            "pid": 397962,
+            "name": "phi chat",
+            "pss_kib": 4737,
+            "rss_kib": 19016,
+            "private_kib": 3996
+          }
+        ],
+        "pss_kib": 6646,
+        "rss_kib": 29432,
+        "private_kib": 5380
+      },
+      {
+        "processes": [
+          {
+            "pid": 397958,
+            "name": "phi",
+            "pss_kib": 1750,
+            "rss_kib": 8824,
+            "private_kib": 1240
+          },
+          {
+            "pid": 397961,
+            "name": "phi host",
+            "pss_kib": 159,
+            "rss_kib": 1592,
+            "private_kib": 144
+          },
+          {
+            "pid": 397962,
+            "name": "phi chat",
+            "pss_kib": 4737,
+            "rss_kib": 19016,
+            "private_kib": 3996
+          }
+        ],
+        "pss_kib": 6646,
+        "rss_kib": 29432,
+        "private_kib": 5380
+      }
+    ],
+    "pss_kib": 6646,
+    "rss_kib": 29432,
+    "private_kib": 5380,
+    "screen_verified": "interactive editor; no prompt submitted"
+  },
+  {
+    "application": "Pi",
+    "trial": 3,
+    "samples": [
+      {
+        "processes": [
+          {
+            "pid": 398013,
+            "name": "pi",
+            "pss_kib": 128302,
+            "rss_kib": 133276,
+            "private_kib": 127776
+          }
+        ],
+        "pss_kib": 128302,
+        "rss_kib": 133276,
+        "private_kib": 127776
+      },
+      {
+        "processes": [
+          {
+            "pid": 398013,
+            "name": "pi",
+            "pss_kib": 128302,
+            "rss_kib": 133276,
+            "private_kib": 127776
+          }
+        ],
+        "pss_kib": 128302,
+        "rss_kib": 133276,
+        "private_kib": 127776
+      },
+      {
+        "processes": [
+          {
+            "pid": 398013,
+            "name": "pi",
+            "pss_kib": 112918,
+            "rss_kib": 117892,
+            "private_kib": 112392
+          }
+        ],
+        "pss_kib": 112918,
+        "rss_kib": 117892,
+        "private_kib": 112392
+      },
+      {
+        "processes": [
+          {
+            "pid": 398013,
+            "name": "pi",
+            "pss_kib": 112910,
+            "rss_kib": 117884,
+            "private_kib": 112384
+          }
+        ],
+        "pss_kib": 112910,
+        "rss_kib": 117884,
+        "private_kib": 112384
+      },
+      {
+        "processes": [
+          {
+            "pid": 398013,
+            "name": "pi",
+            "pss_kib": 111886,
+            "rss_kib": 116860,
+            "private_kib": 111360
+          }
+        ],
+        "pss_kib": 111886,
+        "rss_kib": 116860,
+        "private_kib": 111360
+      }
+    ],
+    "pss_kib": 112918,
+    "rss_kib": 117892,
+    "private_kib": 112392,
+    "screen_verified": "interactive editor; no prompt submitted"
+  }
+]

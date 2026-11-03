@@ -1,0 +1,26 @@
+{
+  "Phi": {
+    "successful_trials": 3,
+    "median_mib": 6.5791015625,
+    "min_mib": 6.490234375,
+    "max_mib": 6.60546875
+  },
+  "Pi": {
+    "successful_trials": 3,
+    "median_mib": 109.751953125,
+    "min_mib": 109.037109375,
+    "max_mib": 110.271484375
+  },
+  "Claude Code": {
+    "successful_trials": 3,
+    "median_mib": 242.314453125,
+    "min_mib": 241.3564453125,
+    "max_mib": 243.984375
+  },
+  "Codex": {
+    "successful_trials": 3,
+    "median_mib": 1096.43359375,
+    "min_mib": 1037.90234375,
+    "max_mib": 1098.51953125
+  }
+}
