@@ -4,7 +4,7 @@
 > - [phi](https://github.com/gnassro/phi) — a Pi-based agent for VS Code.
 > - [phi](https://github.com/pulseaiclub/phi) — a beautiful, lean coding agent built in Go.
 >
-> This Phi is heavily inspired by [Pi](https://github.com/earendil-works/pi), a minimal coding agent created by Mario Zechner. I’ve tried to emulate Pi’s minimalism and malleability by carrying them all the way down the stack.
+> This Phi is heavily inspired by [Pi](https://github.com/earendil-works/pi), a minimal coding agent created by Mario Zechner. I’ve tried to emulate Pi’s minimalism and malleability. With Phi, I wanted to take that philosophy down to the stack itself.
 
 ---
 
