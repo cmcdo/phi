@@ -1,26 +1,26 @@
 {
   "Phi": {
     "successful_trials": 3,
-    "median_mib": 6.5791015625,
-    "min_mib": 6.490234375,
-    "max_mib": 6.60546875
+    "median_mib": 6.28125,
+    "min_mib": 6.2548828125,
+    "max_mib": 6.3037109375
   },
   "Pi": {
     "successful_trials": 3,
-    "median_mib": 109.751953125,
-    "min_mib": 109.037109375,
-    "max_mib": 110.271484375
+    "median_mib": 107.8408203125,
+    "min_mib": 107.7578125,
+    "max_mib": 107.921875
   },
   "Claude Code": {
     "successful_trials": 3,
-    "median_mib": 242.314453125,
-    "min_mib": 241.3564453125,
-    "max_mib": 243.984375
+    "median_mib": 213.0859375,
+    "min_mib": 212.888671875,
+    "max_mib": 213.744140625
   },
   "Codex": {
     "successful_trials": 3,
-    "median_mib": 1096.43359375,
-    "min_mib": 1037.90234375,
-    "max_mib": 1098.51953125
+    "median_mib": 1218.03125,
+    "min_mib": 1107.19921875,
+    "max_mib": 1226.69921875
   }
 }

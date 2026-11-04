@@ -1,12 +1,14 @@
+> The name “phi” for an AI coding harness is overloaded, and I apologise for making it worse. Here are some other wonderful projects that share the name:
+>
+> - [phi-agent](https://github.com/hibuka-labs/phi-agent) — a Rust AI agent framework.
+> - [phi](https://github.com/gnassro/phi) — a Pi-based agent for VS Code.
+> - [phi](https://github.com/pulseaiclub/phi) — a beautiful, lean coding agent built in Go.
+>
+> This Phi is heavily inspired by [Pi](https://github.com/earendil-works/pi), a minimal coding agent created by Mario Zechner. I’ve tried to emulate Pi’s minimalism and malleability by carrying them all the way down the stack.
+
+---
+
 # Phi
-
-The name “phi” for an AI coding harness is overloaded, and I apologise for actively making it worse. Here are some other wonderful projects that share the name:
-
-- [phi-agent](https://github.com/hibuka-labs/phi-agent) — a Rust AI agent framework.
-- [phi](https://github.com/gnassro/phi) — a Pi AI agent for VS Code.
-- [phi](https://github.com/pulseaiclub/phi) — a beautiful, lean coding agent built in Go.
-
-The Phi of this repo is heavily inspired by [Pi](https://github.com/earendil-works/pi), a minimal coding agent created by Mario Zechner. In particular, Pi’s minimalism and malleability are things I’ve tried to emulate in my own way, by taking the minimalist philosophy all the way down to the stack itself.
 
 Phi is a terminal coding agent written in C.
 
@@ -77,11 +79,17 @@ Use `/theme` to list themes, or `/theme default` to return to the planet. Your a
 
 Native C extensions can add tools, slash commands, model providers, agent behaviour, and UI components—without rebuilding Phi itself. They can also integrate external services, including MCP servers.
 
+Extensions can also add widgets: styled text above or below the prompt, or animated, interactive cell-based displays in the header and welcome area. The bundled planet and Game of Life demonstrate the native widget interface, which supports animation timers, pointer input, and controls. You could use it for a live status display, a visualisation, or a small interactive tool.
+
 Ask your agent to build what you need. Phi includes its extension SDK and authoring guide, and can compile and reload extensions once you approve them.
 
 Extensions run inside Phi and are not sandboxed. Only approve code you trust.
 
 See the [extension guide](docs/extensions.md) for details.
+
+## Memory and Performance
+
+<img src="docs/images/memory-comparison.svg" alt="Phi uses 1.4 MiB on disk, 6.3 MiB of RAM and starts in 33 ms, compared with 304–516 MiB, 108–450 MiB and 360–1205 ms for Pi, Claude Code and Codex" width="800">
 
 ## License
 

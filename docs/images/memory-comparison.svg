@@ -1,41 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-labelledby="title desc">
-<title id="title">Memory shortly after launch: Phi, Pi, Claude Code and Codex</title>
-<desc id="desc">Total proportional set size, median of three normal-profile launches. Measured after eight seconds, with no prompts submitted. Linear scale, zero baseline; whiskers show trial minimum and maximum.</desc>
-<rect width="1000" height="430" rx="16" fill="#101714"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="360" viewBox="0 0 1000 360" role="img" aria-labelledby="title desc">
+<title id="title">Phi vs Pi, Claude Code and Codex</title>
+<desc id="desc">Install size: Phi 1.4 MiB, Pi 304, Claude Code 316, Codex 516. RAM at idle: Phi 6.3 MiB, Pi 108, Claude Code 213, Codex about 450. Startup: Phi 33 ms, Pi 360, Claude Code 528, Codex 1205. Lower is better.</desc>
+<rect width="1000" height="360" rx="16" fill="#101714"/>
 <g font-family="system-ui,sans-serif" fill="#e4eee8">
-<text x="32" y="40" font-size="25" font-weight="650">Memory shortly after launch</text>
-<text x="32" y="66" font-size="14" fill="#a2b5aa">Total PSS · normal profiles · 3 launches · median and min–max · lower is better</text>
-<line x1="180.0" x2="180.0" y1="95" y2="322" stroke="#2a3931"/>
-<text x="180.0" y="345" text-anchor="middle" font-size="12" fill="#a2b5aa">0</text>
-<line x1="288.3333333333333" x2="288.3333333333333" y1="95" y2="322" stroke="#2a3931"/>
-<text x="288.3333333333333" y="345" text-anchor="middle" font-size="12" fill="#a2b5aa">200</text>
-<line x1="396.66666666666663" x2="396.66666666666663" y1="95" y2="322" stroke="#2a3931"/>
-<text x="396.66666666666663" y="345" text-anchor="middle" font-size="12" fill="#a2b5aa">400</text>
-<line x1="505.0" x2="505.0" y1="95" y2="322" stroke="#2a3931"/>
-<text x="505.0" y="345" text-anchor="middle" font-size="12" fill="#a2b5aa">600</text>
-<line x1="613.3333333333333" x2="613.3333333333333" y1="95" y2="322" stroke="#2a3931"/>
-<text x="613.3333333333333" y="345" text-anchor="middle" font-size="12" fill="#a2b5aa">800</text>
-<line x1="721.6666666666666" x2="721.6666666666666" y1="95" y2="322" stroke="#2a3931"/>
-<text x="721.6666666666666" y="345" text-anchor="middle" font-size="12" fill="#a2b5aa">1000</text>
-<line x1="830.0" x2="830.0" y1="95" y2="322" stroke="#2a3931"/>
-<text x="830.0" y="345" text-anchor="middle" font-size="12" fill="#a2b5aa">1200</text>
-<text x="32" y="129" font-size="17">Phi</text>
-<rect x="180" y="105" width="3.564" height="34" rx="2" fill="#91d5a4"/>
-<path d="M 183.516 122 H 183.578 M 183.516 116 V 128 M 183.578 116 V 128" stroke="#ffffff" stroke-width="1.5" fill="none"/>
-<text x="197.564" y="129" font-size="17" font-weight="600">6.58 MiB</text>
-<text x="32" y="184" font-size="17">Pi</text>
-<rect x="180" y="160" width="59.449" height="34" rx="2" fill="#88b6d5"/>
-<path d="M 239.062 177 H 239.730 M 239.062 171 V 183 M 239.730 171 V 183" stroke="#ffffff" stroke-width="1.5" fill="none"/>
-<text x="253.449" y="184" font-size="17" font-weight="600">109.75 MiB</text>
-<text x="32" y="239" font-size="17">Claude Code</text>
-<rect x="180" y="215" width="131.254" height="34" rx="2" fill="#d9a582"/>
-<path d="M 310.735 232 H 312.158 M 310.735 226 V 238 M 312.158 226 V 238" stroke="#ffffff" stroke-width="1.5" fill="none"/>
-<text x="325.254" y="239" font-size="17" font-weight="600">242.31 MiB</text>
-<text x="32" y="294" font-size="17">Codex</text>
-<rect x="180" y="270" width="593.902" height="34" rx="2" fill="#b6aad7"/>
-<path d="M 742.197 287 H 775.031 M 742.197 281 V 293 M 775.031 281 V 293" stroke="#ffffff" stroke-width="1.5" fill="none"/>
-<text x="787.902" y="294" font-size="17" font-weight="600">1,096.43 MiB</text>
-<text x="505" y="368" text-anchor="middle" font-size="13" fill="#a2b5aa">Total proportional set size (MiB), linear scale</text>
-<text x="32" y="397" font-size="12" fill="#a2b5aa">Arch Linux · Intel i5-8365U · 100×30 PTY · sampled from 8 seconds after launch · no model tasks</text>
-<text x="32" y="416" font-size="12" fill="#a2b5aa">Includes trial processes and detached hosts; excludes terminal emulator. Settings differ; not a universal ranking.</text>
+<text x="32" y="44" font-size="24" font-weight="650">Phi vs other coding agents</text>
+<text x="32" y="70" font-size="14" fill="#a2b5aa">Lower is better</text>
+<text x="32" y="141" font-size="16" font-weight="650">Phi</text>
+<text x="32" y="191" font-size="16">Pi</text>
+<text x="32" y="241" font-size="16">Claude Code</text>
+<text x="32" y="291" font-size="16">Codex</text>
+<text x="160" y="104" font-size="14" font-weight="600" fill="#a2b5aa">Install size</text>
+<rect x="160" y="120" width="2.5" height="30" rx="3" fill="#91d5a4"/>
+<text x="170.5" y="141" font-size="14" font-weight="700">1.4 MiB</text>
+<rect x="160" y="170" width="100.2" height="30" rx="3" fill="#88b6d5"/>
+<text x="268.2" y="191" font-size="14">304 MiB</text>
+<rect x="160" y="220" width="104.1" height="30" rx="3" fill="#d9a582"/>
+<text x="272.1" y="241" font-size="14">316 MiB</text>
+<rect x="160" y="270" width="170.0" height="30" rx="3" fill="#b6aad7"/>
+<text x="338.0" y="291" font-size="14">516 MiB</text>
+<text x="440" y="104" font-size="14" font-weight="600" fill="#a2b5aa">RAM at idle</text>
+<rect x="440" y="120" width="2.5" height="30" rx="3" fill="#91d5a4"/>
+<text x="450.5" y="141" font-size="14" font-weight="700">6.3 MiB</text>
+<rect x="440" y="170" width="40.8" height="30" rx="3" fill="#88b6d5"/>
+<text x="488.8" y="191" font-size="14">108 MiB</text>
+<rect x="440" y="220" width="80.5" height="30" rx="3" fill="#d9a582"/>
+<text x="528.5" y="241" font-size="14">213 MiB</text>
+<rect x="440" y="270" width="170.0" height="30" rx="3" fill="#b6aad7"/>
+<text x="618.0" y="291" font-size="14">~450 MiB</text>
+<text x="720" y="104" font-size="14" font-weight="600" fill="#a2b5aa">Startup time</text>
+<rect x="720" y="120" width="4.7" height="30" rx="3" fill="#91d5a4"/>
+<text x="732.7" y="141" font-size="14" font-weight="700">33 ms</text>
+<rect x="720" y="170" width="50.8" height="30" rx="3" fill="#88b6d5"/>
+<text x="778.8" y="191" font-size="14">360 ms</text>
+<rect x="720" y="220" width="74.5" height="30" rx="3" fill="#d9a582"/>
+<text x="802.5" y="241" font-size="14">528 ms</text>
+<rect x="720" y="270" width="170.0" height="30" rx="3" fill="#b6aad7"/>
+<text x="898.0" y="291" font-size="14">1.2 s</text>
+<text x="32" y="332" font-size="13" fill="#a2b5aa">Phi: no runtime, no bundled packages · Pi: Node.js + 117 npm packages · Claude Code: Bun · Codex: 413+ Rust crates</text>
 </g></svg>
