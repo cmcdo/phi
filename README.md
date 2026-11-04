@@ -12,7 +12,9 @@
 
 Phi is a terminal coding agent written in C.
 
-<img src="docs/images/opening.gif" alt="Phi’s default terminal screen in action" width="500">
+<p align="center">
+  <img src="docs/images/opening.gif" alt="Phi’s default terminal screen in action" width="500">
+</p>
 
 ## Build and installation
 
