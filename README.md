@@ -16,6 +16,12 @@ Phi is a terminal coding agent written in C.
   <img src="docs/images/opening.gif" alt="Phi’s default terminal screen in action" width="500">
 </p>
 
+## Memory and Performance
+
+<img src="docs/images/memory-comparison.svg" alt="Phi uses 1.4 MiB on disk, 6.3 MiB of RAM and starts in 33 ms, compared with 304–516 MiB, 108–450 MiB and 360–1205 ms for Pi, Claude Code and Codex" width="800">
+
+Measured on one Linux machine. The trials and the environment they were run in are in [docs/benchmarks](docs/benchmarks).
+
 ## Build and installation
 
 Phi is only available for Linux. As I alluded to earlier, Phi is very minimal. To build it, you need:
@@ -63,7 +69,11 @@ Phi is completely keyboard-centric: Vim mode is the only mode. Press `i` to ente
 
 Type `/help` for a popup with keybindings and command help.
 
+After rebuilding Phi, type `/restart` in an idle, saved chat to switch it to the latest binary without leaving the conversation. Hosted chats keep their terminal connection. See [restarting a chat](docs/restart.md) for safeguards and limitations.
+
 Press the Left arrow twice in NORMAL mode on an empty prompt to background an agent. Run `phi board`, or type `/board` inside Phi, to open the board and move between Working, Waiting, and Saved chats.
+
+Chats can also run headless. `phi --bg PROMPT` starts one in the background, `phi send ID TEXT` gives a running chat its next message, `phi ls` lists chats, and `phi attach ID` opens one in your terminal. This is enough to drive several agents from a script or from another agent.
 
 For more command-line modes and options, run `phi --help`.
 ## Customisation
@@ -88,10 +98,6 @@ Ask your agent to build what you need. Phi includes its extension SDK and author
 Extensions run inside Phi and are not sandboxed. Only approve code you trust.
 
 See the [extension guide](docs/extensions.md) for details.
-
-## Memory and Performance
-
-<img src="docs/images/memory-comparison.svg" alt="Phi uses 1.4 MiB on disk, 6.3 MiB of RAM and starts in 33 ms, compared with 304–516 MiB, 108–450 MiB and 360–1205 ms for Pi, Claude Code and Codex" width="800">
 
 ## License
 
