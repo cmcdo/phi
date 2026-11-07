@@ -1,0 +1,32 @@
+{
+  "rss_mib_samples": [
+    665.0,
+    665.0,
+    665.0
+  ],
+  "mode": "local backend, no shared daemon",
+  "terminal_excluded": true,
+  "agent": "Codex",
+  "version": "0.166.0",
+  "content_tokens": 400000,
+  "tokenizer": "cl100k_base",
+  "observed_utc": "2026-11-07T11:21:38.894323+00:00",
+  "sample_interval_seconds": 2,
+  "launches": 1,
+  "scenario": "loaded",
+  "command": [
+    "/home/cmcdo/.local/bin/codex",
+    "--no-daemon",
+    "resume",
+    "ab802205-b722-4a67-8b6f-fa9d943f92cb"
+  ],
+  "transcript": "/tmp/codex400-i9y45ppe/home/.codex/sessions/2026/11/07/rollout-2026-11-07T11-20-42-ab802205-b722-4a67-8b6f-fa9d943f92cb.jsonl",
+  "verification": "Final BENCHMARK HISTORY LOADED marker observed in terminal log.",
+  "limitations": [
+    "Live samples from one launch, not the three-launch 15\u201317-second protocol.",
+    "Earlier live readings varied during startup; these three later readings matched.",
+    "Local backend (--no-daemon); no shared daemon included.",
+    "Kitty and the script recording wrapper are excluded.",
+    "No matching empty-session measurement."
+  ]
+}

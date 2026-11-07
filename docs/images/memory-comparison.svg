@@ -1,40 +1,104 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="360" viewBox="0 0 1000 360" role="img" aria-labelledby="title desc">
-<title id="title">Phi vs Pi, Claude Code and Codex</title>
-<desc id="desc">Install size: Phi 1.4 MiB, Pi 304, Claude Code 316, Codex 516. RAM at idle: Phi 6.3 MiB, Pi 108, Claude Code 213, Codex about 450. Startup: Phi 33 ms, Pi 360, Claude Code 528, Codex 1205. Lower is better.</desc>
-<rect width="1000" height="360" rx="16" fill="#101714"/>
-<g font-family="system-ui,sans-serif" fill="#e4eee8">
-<text x="32" y="44" font-size="24" font-weight="650">Phi vs other coding agents</text>
-<text x="32" y="70" font-size="14" fill="#a2b5aa">Lower is better</text>
-<text x="32" y="141" font-size="16" font-weight="650">Phi</text>
-<text x="32" y="191" font-size="16">Pi</text>
-<text x="32" y="241" font-size="16">Claude Code</text>
-<text x="32" y="291" font-size="16">Codex</text>
-<text x="160" y="104" font-size="14" font-weight="600" fill="#a2b5aa">Install size</text>
-<rect x="160" y="120" width="2.5" height="30" rx="3" fill="#91d5a4"/>
-<text x="170.5" y="141" font-size="14" font-weight="700">1.4 MiB</text>
-<rect x="160" y="170" width="100.2" height="30" rx="3" fill="#88b6d5"/>
-<text x="268.2" y="191" font-size="14">304 MiB</text>
-<rect x="160" y="220" width="104.1" height="30" rx="3" fill="#d9a582"/>
-<text x="272.1" y="241" font-size="14">316 MiB</text>
-<rect x="160" y="270" width="170.0" height="30" rx="3" fill="#b6aad7"/>
-<text x="338.0" y="291" font-size="14">516 MiB</text>
-<text x="440" y="104" font-size="14" font-weight="600" fill="#a2b5aa">RAM at idle</text>
-<rect x="440" y="120" width="2.5" height="30" rx="3" fill="#91d5a4"/>
-<text x="450.5" y="141" font-size="14" font-weight="700">6.3 MiB</text>
-<rect x="440" y="170" width="40.8" height="30" rx="3" fill="#88b6d5"/>
-<text x="488.8" y="191" font-size="14">108 MiB</text>
-<rect x="440" y="220" width="80.5" height="30" rx="3" fill="#d9a582"/>
-<text x="528.5" y="241" font-size="14">213 MiB</text>
-<rect x="440" y="270" width="170.0" height="30" rx="3" fill="#b6aad7"/>
-<text x="618.0" y="291" font-size="14">~450 MiB</text>
-<text x="720" y="104" font-size="14" font-weight="600" fill="#a2b5aa">Startup time</text>
-<rect x="720" y="120" width="4.7" height="30" rx="3" fill="#91d5a4"/>
-<text x="732.7" y="141" font-size="14" font-weight="700">33 ms</text>
-<rect x="720" y="170" width="50.8" height="30" rx="3" fill="#88b6d5"/>
-<text x="778.8" y="191" font-size="14">360 ms</text>
-<rect x="720" y="220" width="74.5" height="30" rx="3" fill="#d9a582"/>
-<text x="802.5" y="241" font-size="14">528 ms</text>
-<rect x="720" y="270" width="170.0" height="30" rx="3" fill="#b6aad7"/>
-<text x="898.0" y="291" font-size="14">1.2 s</text>
-<text x="32" y="332" font-size="13" fill="#a2b5aa">Phi: no runtime, no bundled packages · Pi: Node.js + 117 npm packages · Claude Code: Bun · Codex: 413+ Rust crates</text>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="560" viewBox="0 0 1040 560" role="img" aria-labelledby="title desc">
+<title id="title">Coding agent memory, install size, and startup time</title>
+<desc id="desc">Resident memory (RSS), install size, and startup time. RAM panels use the same zero-based scale. All RAM values are medians of three fresh launches sampled 15–17 seconds after startup. Methodology and raw results are in docs/benchmarks.</desc>
+<style>
+text { font-family: 'DejaVu Sans Mono', 'SFMono-Regular', Consolas, monospace; fill: #dedede; }
+.heading { font-size: 17px; font-weight: 600; }
+.label { font-size: 15px; }
+.value { font-size: 15px; font-variant-numeric: tabular-nums; }
+.muted { fill: #949494; font-size: 12px; }
+.grid { stroke: #303030; stroke-width: 1; }
+.rule { stroke: #444444; }
+.bar { fill: #767676; }
+.phi { fill: #d7af5f; }
+@media (prefers-color-scheme: light) {
+  text { fill: #242424; }
+  .muted { fill: #656565; }
+  .grid { stroke: #dedede; }
+  .rule { stroke: #bdbdbd; }
+  .phi { fill: #9c772c; }
+}
+</style>
+
+<text x="32" y="44" class="heading" >RAM · idle</text>
+<text x="488" y="44" class="muted" text-anchor="end">RSS / MiB</text>
+<line x1="164" y1="84" x2="164" y2="252" class="grid"/>
+<text x="164" y="76" class="muted" text-anchor="middle">0</text>
+<line x1="286" y1="84" x2="286" y2="252" class="grid"/>
+<text x="286" y="76" class="muted" text-anchor="middle">300</text>
+<line x1="408" y1="84" x2="408" y2="252" class="grid"/>
+<text x="408" y="76" class="muted" text-anchor="middle">600</text>
+<text x="32" y="114" class="label" font-weight="600">Phi</text>
+<rect x="164" y="98" width="7.439" height="22" class="bar phi"/>
+<text x="488" y="114" class="value" text-anchor="end">18.3</text>
+<text x="32" y="158" class="label" >Pi</text>
+<rect x="164" y="142" width="37.536" height="22" class="bar"/>
+<text x="488" y="158" class="value" text-anchor="end">92.3</text>
+<text x="32" y="202" class="label" >Claude Code</text>
+<rect x="164" y="186" width="100.045" height="22" class="bar"/>
+<text x="488" y="202" class="value" text-anchor="end">246.0</text>
+<text x="32" y="246" class="label" >Codex</text>
+<rect x="164" y="230" width="212.242" height="22" class="bar"/>
+<text x="488" y="246" class="value" text-anchor="end">521.9</text>
+<text x="552" y="44" class="heading" >RAM · 400K chat</text>
+<text x="1008" y="44" class="muted" text-anchor="end">RSS / MiB</text>
+<line x1="684" y1="84" x2="684" y2="252" class="grid"/>
+<text x="684" y="76" class="muted" text-anchor="middle">0</text>
+<line x1="806" y1="84" x2="806" y2="252" class="grid"/>
+<text x="806" y="76" class="muted" text-anchor="middle">300</text>
+<line x1="928" y1="84" x2="928" y2="252" class="grid"/>
+<text x="928" y="76" class="muted" text-anchor="middle">600</text>
+<text x="552" y="114" class="label" font-weight="600">Phi</text>
+<rect x="684" y="98" width="9.094" height="22" class="bar phi"/>
+<text x="1008" y="114" class="value" text-anchor="end">22.4</text>
+<text x="552" y="158" class="label" >Pi</text>
+<rect x="684" y="142" width="58.670" height="22" class="bar"/>
+<text x="1008" y="158" class="value" text-anchor="end">144.3</text>
+<text x="552" y="202" class="label" >Claude Code</text>
+<rect x="684" y="186" width="104.003" height="22" class="bar"/>
+<text x="1008" y="202" class="value" text-anchor="end">255.7</text>
+<text x="552" y="246" class="label" >Codex</text>
+<rect x="684" y="230" width="228.960" height="22" class="bar"/>
+<text x="1008" y="246" class="value" text-anchor="end">563.0</text>
+<line x1="32" y1="280" x2="1008" y2="280" class="rule"/>
+<text x="32" y="324" class="heading" >Install</text>
+<text x="488" y="324" class="muted" text-anchor="end">MiB</text>
+<line x1="164" y1="364" x2="164" y2="532" class="grid"/>
+<text x="164" y="356" class="muted" text-anchor="middle">0</text>
+<line x1="286" y1="364" x2="286" y2="532" class="grid"/>
+<text x="286" y="356" class="muted" text-anchor="middle">300</text>
+<line x1="408" y1="364" x2="408" y2="532" class="grid"/>
+<text x="408" y="356" class="muted" text-anchor="middle">600</text>
+<text x="32" y="394" class="label" font-weight="600">Phi</text>
+<rect x="164" y="378" width="0.569" height="22" class="bar phi"/>
+<text x="488" y="394" class="value" text-anchor="end">1.4</text>
+<text x="32" y="438" class="label" >Pi</text>
+<rect x="164" y="422" width="123.627" height="22" class="bar"/>
+<text x="488" y="438" class="value" text-anchor="end">304</text>
+<text x="32" y="482" class="label" >Claude Code</text>
+<rect x="164" y="466" width="128.507" height="22" class="bar"/>
+<text x="488" y="482" class="value" text-anchor="end">316</text>
+<text x="32" y="526" class="label" >Codex</text>
+<rect x="164" y="510" width="209.840" height="22" class="bar"/>
+<text x="488" y="526" class="value" text-anchor="end">516</text>
+<text x="552" y="324" class="heading" >Startup</text>
+<text x="1008" y="324" class="muted" text-anchor="end">ms</text>
+<line x1="684" y1="364" x2="684" y2="532" class="grid"/>
+<text x="684" y="356" class="muted" text-anchor="middle">0</text>
+<line x1="806" y1="364" x2="806" y2="532" class="grid"/>
+<text x="806" y="356" class="muted" text-anchor="middle">750</text>
+<line x1="928" y1="364" x2="928" y2="532" class="grid"/>
+<text x="928" y="356" class="muted" text-anchor="middle">1500</text>
+<text x="552" y="394" class="label" font-weight="600">Phi</text>
+<rect x="684" y="378" width="5.368" height="22" class="bar phi"/>
+<text x="1008" y="394" class="value" text-anchor="end">33</text>
+<text x="552" y="438" class="label" >Pi</text>
+<rect x="684" y="422" width="58.560" height="22" class="bar"/>
+<text x="1008" y="438" class="value" text-anchor="end">360</text>
+<text x="552" y="482" class="label" >Claude Code</text>
+<rect x="684" y="466" width="85.888" height="22" class="bar"/>
+<text x="1008" y="482" class="value" text-anchor="end">528</text>
+<text x="552" y="526" class="label" >Codex</text>
+<rect x="684" y="510" width="196.013" height="22" class="bar"/>
+<text x="1008" y="526" class="value" text-anchor="end">1,205</text>
+</svg>

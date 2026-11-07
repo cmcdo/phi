@@ -1,0 +1,608 @@
+[
+  {
+    "agent": "codex",
+    "scenario": "empty",
+    "trial": 0,
+    "command": [
+      "/home/cmcdo/.local/bin/codex",
+      "--no-daemon"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 456520,
+        "rss_kib": 456528,
+        "processes": [
+          {
+            "pid": 35478,
+            "name": "codex",
+            "Rss": 456528,
+            "Pss": 456520
+          }
+        ]
+      },
+      {
+        "pss_kib": 457856,
+        "rss_kib": 457864,
+        "processes": [
+          {
+            "pid": 35478,
+            "name": "codex",
+            "Rss": 457864,
+            "Pss": 457856
+          }
+        ]
+      },
+      {
+        "pss_kib": 459904,
+        "rss_kib": 459912,
+        "processes": [
+          {
+            "pid": 35478,
+            "name": "codex",
+            "Rss": 459912,
+            "Pss": 459904
+          }
+        ]
+      },
+      {
+        "pss_kib": 459904,
+        "rss_kib": 459912,
+        "processes": [
+          {
+            "pid": 35478,
+            "name": "codex",
+            "Rss": 459912,
+            "Pss": 459904
+          }
+        ]
+      },
+      {
+        "pss_kib": 437372,
+        "rss_kib": 437380,
+        "processes": [
+          {
+            "pid": 35478,
+            "name": "codex",
+            "Rss": 437380,
+            "Pss": 437372
+          }
+        ]
+      },
+      {
+        "pss_kib": 445192,
+        "rss_kib": 445200,
+        "processes": [
+          {
+            "pid": 35478,
+            "name": "codex",
+            "Rss": 445200,
+            "Pss": 445192
+          }
+        ]
+      },
+      {
+        "pss_kib": 445192,
+        "rss_kib": 445200,
+        "processes": [
+          {
+            "pid": 35478,
+            "name": "codex",
+            "Rss": 445200,
+            "Pss": 445192
+          }
+        ]
+      }
+    ],
+    "pss_mib": 445.8203125,
+    "rss_mib": 445.828125
+  },
+  {
+    "agent": "codex",
+    "scenario": "loaded",
+    "trial": 0,
+    "command": [
+      "/home/cmcdo/.local/bin/codex",
+      "--no-daemon",
+      "resume",
+      "0fb99640-916f-4539-8abd-6c670092709b"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 576520,
+        "rss_kib": 576528,
+        "processes": [
+          {
+            "pid": 35579,
+            "name": "codex",
+            "Rss": 576528,
+            "Pss": 576520
+          }
+        ]
+      },
+      {
+        "pss_kib": 576520,
+        "rss_kib": 576528,
+        "processes": [
+          {
+            "pid": 35579,
+            "name": "codex",
+            "Rss": 576528,
+            "Pss": 576520
+          }
+        ]
+      },
+      {
+        "pss_kib": 576104,
+        "rss_kib": 576112,
+        "processes": [
+          {
+            "pid": 35579,
+            "name": "codex",
+            "Rss": 576112,
+            "Pss": 576104
+          }
+        ]
+      },
+      {
+        "pss_kib": 576104,
+        "rss_kib": 576112,
+        "processes": [
+          {
+            "pid": 35579,
+            "name": "codex",
+            "Rss": 576112,
+            "Pss": 576104
+          }
+        ]
+      },
+      {
+        "pss_kib": 579428,
+        "rss_kib": 579436,
+        "processes": [
+          {
+            "pid": 35579,
+            "name": "codex",
+            "Rss": 579436,
+            "Pss": 579428
+          }
+        ]
+      },
+      {
+        "pss_kib": 582904,
+        "rss_kib": 582912,
+        "processes": [
+          {
+            "pid": 35579,
+            "name": "codex",
+            "Rss": 582912,
+            "Pss": 582904
+          }
+        ]
+      },
+      {
+        "pss_kib": 582904,
+        "rss_kib": 582912,
+        "processes": [
+          {
+            "pid": 35579,
+            "name": "codex",
+            "Rss": 582912,
+            "Pss": 582904
+          }
+        ]
+      }
+    ],
+    "pss_mib": 563.0078125,
+    "rss_mib": 563.015625
+  },
+  {
+    "agent": "codex",
+    "scenario": "empty",
+    "trial": 1,
+    "command": [
+      "/home/cmcdo/.local/bin/codex",
+      "--no-daemon"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 535028,
+        "rss_kib": 535040,
+        "processes": [
+          {
+            "pid": 35723,
+            "name": "codex",
+            "Rss": 535040,
+            "Pss": 535028
+          }
+        ]
+      },
+      {
+        "pss_kib": 537256,
+        "rss_kib": 537268,
+        "processes": [
+          {
+            "pid": 35723,
+            "name": "codex",
+            "Rss": 537268,
+            "Pss": 537256
+          }
+        ]
+      },
+      {
+        "pss_kib": 544132,
+        "rss_kib": 544144,
+        "processes": [
+          {
+            "pid": 35723,
+            "name": "codex",
+            "Rss": 544144,
+            "Pss": 544132
+          }
+        ]
+      },
+      {
+        "pss_kib": 545644,
+        "rss_kib": 545656,
+        "processes": [
+          {
+            "pid": 35723,
+            "name": "codex",
+            "Rss": 545656,
+            "Pss": 545644
+          }
+        ]
+      },
+      {
+        "pss_kib": 553860,
+        "rss_kib": 553872,
+        "processes": [
+          {
+            "pid": 35723,
+            "name": "codex",
+            "Rss": 553872,
+            "Pss": 553860
+          }
+        ]
+      },
+      {
+        "pss_kib": 554536,
+        "rss_kib": 554548,
+        "processes": [
+          {
+            "pid": 35723,
+            "name": "codex",
+            "Rss": 554548,
+            "Pss": 554536
+          }
+        ]
+      },
+      {
+        "pss_kib": 564412,
+        "rss_kib": 564424,
+        "processes": [
+          {
+            "pid": 35723,
+            "name": "codex",
+            "Rss": 564424,
+            "Pss": 564412
+          }
+        ]
+      }
+    ],
+    "pss_mib": 532.85546875,
+    "rss_mib": 532.8671875
+  },
+  {
+    "agent": "codex",
+    "scenario": "loaded",
+    "trial": 1,
+    "command": [
+      "/home/cmcdo/.local/bin/codex",
+      "--no-daemon",
+      "resume",
+      "1e205805-ce7c-4109-9c5c-2c687d565e3a"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 597340,
+        "rss_kib": 597348,
+        "processes": [
+          {
+            "pid": 35832,
+            "name": "codex",
+            "Rss": 597348,
+            "Pss": 597340
+          }
+        ]
+      },
+      {
+        "pss_kib": 597364,
+        "rss_kib": 597372,
+        "processes": [
+          {
+            "pid": 35832,
+            "name": "codex",
+            "Rss": 597372,
+            "Pss": 597364
+          }
+        ]
+      },
+      {
+        "pss_kib": 598084,
+        "rss_kib": 598092,
+        "processes": [
+          {
+            "pid": 35832,
+            "name": "codex",
+            "Rss": 598092,
+            "Pss": 598084
+          }
+        ]
+      },
+      {
+        "pss_kib": 598104,
+        "rss_kib": 598112,
+        "processes": [
+          {
+            "pid": 35832,
+            "name": "codex",
+            "Rss": 598112,
+            "Pss": 598104
+          }
+        ]
+      },
+      {
+        "pss_kib": 612768,
+        "rss_kib": 612776,
+        "processes": [
+          {
+            "pid": 35832,
+            "name": "codex",
+            "Rss": 612776,
+            "Pss": 612768
+          }
+        ]
+      },
+      {
+        "pss_kib": 612748,
+        "rss_kib": 612756,
+        "processes": [
+          {
+            "pid": 35832,
+            "name": "codex",
+            "Rss": 612756,
+            "Pss": 612748
+          }
+        ]
+      },
+      {
+        "pss_kib": 612848,
+        "rss_kib": 612856,
+        "processes": [
+          {
+            "pid": 35832,
+            "name": "codex",
+            "Rss": 612856,
+            "Pss": 612848
+          }
+        ]
+      }
+    ],
+    "pss_mib": 584.0859375,
+    "rss_mib": 584.09375
+  },
+  {
+    "agent": "codex",
+    "scenario": "empty",
+    "trial": 2,
+    "command": [
+      "/home/cmcdo/.local/bin/codex",
+      "--no-daemon"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 530248,
+        "rss_kib": 530260,
+        "processes": [
+          {
+            "pid": 35950,
+            "name": "codex",
+            "Rss": 530260,
+            "Pss": 530248
+          }
+        ]
+      },
+      {
+        "pss_kib": 537272,
+        "rss_kib": 537284,
+        "processes": [
+          {
+            "pid": 35950,
+            "name": "codex",
+            "Rss": 537284,
+            "Pss": 537272
+          }
+        ]
+      },
+      {
+        "pss_kib": 541236,
+        "rss_kib": 541248,
+        "processes": [
+          {
+            "pid": 35950,
+            "name": "codex",
+            "Rss": 541248,
+            "Pss": 541236
+          }
+        ]
+      },
+      {
+        "pss_kib": 543468,
+        "rss_kib": 543480,
+        "processes": [
+          {
+            "pid": 35950,
+            "name": "codex",
+            "Rss": 543480,
+            "Pss": 543468
+          }
+        ]
+      },
+      {
+        "pss_kib": 527640,
+        "rss_kib": 527652,
+        "processes": [
+          {
+            "pid": 35950,
+            "name": "codex",
+            "Rss": 527652,
+            "Pss": 527640
+          }
+        ]
+      },
+      {
+        "pss_kib": 534420,
+        "rss_kib": 534432,
+        "processes": [
+          {
+            "pid": 35950,
+            "name": "codex",
+            "Rss": 534432,
+            "Pss": 534420
+          }
+        ]
+      },
+      {
+        "pss_kib": 534420,
+        "rss_kib": 534432,
+        "processes": [
+          {
+            "pid": 35950,
+            "name": "codex",
+            "Rss": 534432,
+            "Pss": 534420
+          }
+        ]
+      }
+    ],
+    "pss_mib": 521.89453125,
+    "rss_mib": 521.90625
+  },
+  {
+    "agent": "codex",
+    "scenario": "loaded",
+    "trial": 2,
+    "command": [
+      "/home/cmcdo/.local/bin/codex",
+      "--no-daemon",
+      "resume",
+      "ba6af5a6-58f2-4345-be34-b8817b6a3a71"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 557460,
+        "rss_kib": 557472,
+        "processes": [
+          {
+            "pid": 36062,
+            "name": "codex",
+            "Rss": 557472,
+            "Pss": 557460
+          }
+        ]
+      },
+      {
+        "pss_kib": 558940,
+        "rss_kib": 558952,
+        "processes": [
+          {
+            "pid": 36062,
+            "name": "codex",
+            "Rss": 558952,
+            "Pss": 558940
+          }
+        ]
+      },
+      {
+        "pss_kib": 570864,
+        "rss_kib": 570876,
+        "processes": [
+          {
+            "pid": 36062,
+            "name": "codex",
+            "Rss": 570876,
+            "Pss": 570864
+          }
+        ]
+      },
+      {
+        "pss_kib": 571804,
+        "rss_kib": 571816,
+        "processes": [
+          {
+            "pid": 36062,
+            "name": "codex",
+            "Rss": 571816,
+            "Pss": 571804
+          }
+        ]
+      },
+      {
+        "pss_kib": 572780,
+        "rss_kib": 572792,
+        "processes": [
+          {
+            "pid": 36062,
+            "name": "codex",
+            "Rss": 572792,
+            "Pss": 572780
+          }
+        ]
+      },
+      {
+        "pss_kib": 574292,
+        "rss_kib": 574304,
+        "processes": [
+          {
+            "pid": 36062,
+            "name": "codex",
+            "Rss": 574304,
+            "Pss": 574292
+          }
+        ]
+      },
+      {
+        "pss_kib": 574308,
+        "rss_kib": 574320,
+        "processes": [
+          {
+            "pid": 36062,
+            "name": "codex",
+            "Rss": 574320,
+            "Pss": 574308
+          }
+        ]
+      }
+    ],
+    "pss_mib": 558.40234375,
+    "rss_mib": 558.4140625
+  }
+]

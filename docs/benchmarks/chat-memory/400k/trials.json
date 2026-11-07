@@ -1,0 +1,1790 @@
+[
+  {
+    "agent": "phi",
+    "scenario": "empty",
+    "trial": 0,
+    "command": [
+      "/home/cmcdo/sync/phi_public/phi",
+      "--no-host"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 5098,
+        "rss_kib": 18848,
+        "processes": [
+          {
+            "pid": 31058,
+            "name": "phi",
+            "Rss": 18848,
+            "Pss": 5098
+          }
+        ]
+      },
+      {
+        "pss_kib": 5098,
+        "rss_kib": 18848,
+        "processes": [
+          {
+            "pid": 31058,
+            "name": "phi",
+            "Rss": 18848,
+            "Pss": 5098
+          }
+        ]
+      },
+      {
+        "pss_kib": 5098,
+        "rss_kib": 18848,
+        "processes": [
+          {
+            "pid": 31058,
+            "name": "phi",
+            "Rss": 18848,
+            "Pss": 5098
+          }
+        ]
+      },
+      {
+        "pss_kib": 5098,
+        "rss_kib": 18848,
+        "processes": [
+          {
+            "pid": 31058,
+            "name": "phi",
+            "Rss": 18848,
+            "Pss": 5098
+          }
+        ]
+      },
+      {
+        "pss_kib": 5098,
+        "rss_kib": 18848,
+        "processes": [
+          {
+            "pid": 31058,
+            "name": "phi",
+            "Rss": 18848,
+            "Pss": 5098
+          }
+        ]
+      },
+      {
+        "pss_kib": 5098,
+        "rss_kib": 18848,
+        "processes": [
+          {
+            "pid": 31058,
+            "name": "phi",
+            "Rss": 18848,
+            "Pss": 5098
+          }
+        ]
+      }
+    ],
+    "pss_mib": 4.978515625,
+    "rss_mib": 18.40625
+  },
+  {
+    "agent": "phi",
+    "scenario": "loaded",
+    "trial": 0,
+    "command": [
+      "/home/cmcdo/sync/phi_public/phi",
+      "--no-host",
+      "--session",
+      "/tmp/phi-chat-memory-400k-verified/phi-loaded-0/phi.jsonl"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22900,
+        "processes": [
+          {
+            "pid": 31070,
+            "name": "phi",
+            "Rss": 22900,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22900,
+        "processes": [
+          {
+            "pid": 31070,
+            "name": "phi",
+            "Rss": 22900,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22900,
+        "processes": [
+          {
+            "pid": 31070,
+            "name": "phi",
+            "Rss": 22900,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22900,
+        "processes": [
+          {
+            "pid": 31070,
+            "name": "phi",
+            "Rss": 22900,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22900,
+        "processes": [
+          {
+            "pid": 31070,
+            "name": "phi",
+            "Rss": 22900,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22900,
+        "processes": [
+          {
+            "pid": 31070,
+            "name": "phi",
+            "Rss": 22900,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22900,
+        "processes": [
+          {
+            "pid": 31070,
+            "name": "phi",
+            "Rss": 22900,
+            "Pss": 9200
+          }
+        ]
+      }
+    ],
+    "pss_mib": 8.984375,
+    "rss_mib": 22.36328125
+  },
+  {
+    "agent": "pi",
+    "scenario": "empty",
+    "trial": 0,
+    "command": [
+      "/home/cmcdo/.local/bin/pi",
+      "--offline"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 90603,
+        "rss_kib": 94516,
+        "processes": [
+          {
+            "pid": 31124,
+            "name": "pi",
+            "Rss": 94516,
+            "Pss": 90603
+          }
+        ]
+      },
+      {
+        "pss_kib": 90603,
+        "rss_kib": 94516,
+        "processes": [
+          {
+            "pid": 31124,
+            "name": "pi",
+            "Rss": 94516,
+            "Pss": 90603
+          }
+        ]
+      },
+      {
+        "pss_kib": 90603,
+        "rss_kib": 94516,
+        "processes": [
+          {
+            "pid": 31124,
+            "name": "pi",
+            "Rss": 94516,
+            "Pss": 90603
+          }
+        ]
+      },
+      {
+        "pss_kib": 90603,
+        "rss_kib": 94516,
+        "processes": [
+          {
+            "pid": 31124,
+            "name": "pi",
+            "Rss": 94516,
+            "Pss": 90603
+          }
+        ]
+      },
+      {
+        "pss_kib": 90603,
+        "rss_kib": 94516,
+        "processes": [
+          {
+            "pid": 31124,
+            "name": "pi",
+            "Rss": 94516,
+            "Pss": 90603
+          }
+        ]
+      },
+      {
+        "pss_kib": 90603,
+        "rss_kib": 94516,
+        "processes": [
+          {
+            "pid": 31124,
+            "name": "pi",
+            "Rss": 94516,
+            "Pss": 90603
+          }
+        ]
+      },
+      {
+        "pss_kib": 90603,
+        "rss_kib": 94516,
+        "processes": [
+          {
+            "pid": 31124,
+            "name": "pi",
+            "Rss": 94516,
+            "Pss": 90603
+          }
+        ]
+      }
+    ],
+    "pss_mib": 88.4794921875,
+    "rss_mib": 92.30078125
+  },
+  {
+    "agent": "pi",
+    "scenario": "loaded",
+    "trial": 0,
+    "command": [
+      "/home/cmcdo/.local/bin/pi",
+      "--offline",
+      "--session",
+      "/tmp/phi-chat-memory-400k-verified/pi-loaded-0/pi.jsonl"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 143792,
+        "rss_kib": 147732,
+        "processes": [
+          {
+            "pid": 31164,
+            "name": "pi",
+            "Rss": 147732,
+            "Pss": 143792
+          }
+        ]
+      },
+      {
+        "pss_kib": 143792,
+        "rss_kib": 147732,
+        "processes": [
+          {
+            "pid": 31164,
+            "name": "pi",
+            "Rss": 147732,
+            "Pss": 143792
+          }
+        ]
+      },
+      {
+        "pss_kib": 143792,
+        "rss_kib": 147732,
+        "processes": [
+          {
+            "pid": 31164,
+            "name": "pi",
+            "Rss": 147732,
+            "Pss": 143792
+          }
+        ]
+      },
+      {
+        "pss_kib": 143792,
+        "rss_kib": 147732,
+        "processes": [
+          {
+            "pid": 31164,
+            "name": "pi",
+            "Rss": 147732,
+            "Pss": 143792
+          }
+        ]
+      },
+      {
+        "pss_kib": 143792,
+        "rss_kib": 147732,
+        "processes": [
+          {
+            "pid": 31164,
+            "name": "pi",
+            "Rss": 147732,
+            "Pss": 143792
+          }
+        ]
+      },
+      {
+        "pss_kib": 107188,
+        "rss_kib": 111128,
+        "processes": [
+          {
+            "pid": 31164,
+            "name": "pi",
+            "Rss": 111128,
+            "Pss": 107188
+          }
+        ]
+      },
+      {
+        "pss_kib": 107188,
+        "rss_kib": 111128,
+        "processes": [
+          {
+            "pid": 31164,
+            "name": "pi",
+            "Rss": 111128,
+            "Pss": 107188
+          }
+        ]
+      }
+    ],
+    "pss_mib": 140.421875,
+    "rss_mib": 144.26953125
+  },
+  {
+    "agent": "claude",
+    "scenario": "empty",
+    "trial": 0,
+    "command": [
+      "/home/cmcdo/.local/bin/claude"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [
+      "Confirmed trust for isolated synthetic workspace"
+    ],
+    "samples": [
+      {
+        "pss_kib": 177626,
+        "rss_kib": 254392,
+        "processes": [
+          {
+            "pid": 31211,
+            "name": "claude",
+            "Rss": 254392,
+            "Pss": 177626
+          }
+        ]
+      },
+      {
+        "pss_kib": 175665,
+        "rss_kib": 252480,
+        "processes": [
+          {
+            "pid": 31211,
+            "name": "claude",
+            "Rss": 252480,
+            "Pss": 175665
+          }
+        ]
+      },
+      {
+        "pss_kib": 175657,
+        "rss_kib": 252472,
+        "processes": [
+          {
+            "pid": 31211,
+            "name": "claude",
+            "Rss": 252472,
+            "Pss": 175657
+          }
+        ]
+      },
+      {
+        "pss_kib": 175693,
+        "rss_kib": 252508,
+        "processes": [
+          {
+            "pid": 31211,
+            "name": "claude",
+            "Rss": 252508,
+            "Pss": 175693
+          }
+        ]
+      },
+      {
+        "pss_kib": 175693,
+        "rss_kib": 252508,
+        "processes": [
+          {
+            "pid": 31211,
+            "name": "claude",
+            "Rss": 252508,
+            "Pss": 175693
+          }
+        ]
+      },
+      {
+        "pss_kib": 175685,
+        "rss_kib": 252500,
+        "processes": [
+          {
+            "pid": 31211,
+            "name": "claude",
+            "Rss": 252500,
+            "Pss": 175685
+          }
+        ]
+      },
+      {
+        "pss_kib": 175693,
+        "rss_kib": 252508,
+        "processes": [
+          {
+            "pid": 31211,
+            "name": "claude",
+            "Rss": 252508,
+            "Pss": 175693
+          }
+        ]
+      }
+    ],
+    "pss_mib": 171.5751953125,
+    "rss_mib": 246.58984375
+  },
+  {
+    "agent": "claude",
+    "scenario": "loaded",
+    "trial": 0,
+    "command": [
+      "/home/cmcdo/.local/bin/claude",
+      "--resume",
+      "b3b3d40a-f421-4fe2-93da-7fda115858c4"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [
+      "Confirmed trust for isolated synthetic workspace"
+    ],
+    "samples": [
+      {
+        "pss_kib": 184178,
+        "rss_kib": 263188,
+        "processes": [
+          {
+            "pid": 31326,
+            "name": "claude",
+            "Rss": 263188,
+            "Pss": 184178
+          }
+        ]
+      },
+      {
+        "pss_kib": 182825,
+        "rss_kib": 261884,
+        "processes": [
+          {
+            "pid": 31326,
+            "name": "claude",
+            "Rss": 261884,
+            "Pss": 182825
+          }
+        ]
+      },
+      {
+        "pss_kib": 182825,
+        "rss_kib": 261884,
+        "processes": [
+          {
+            "pid": 31326,
+            "name": "claude",
+            "Rss": 261884,
+            "Pss": 182825
+          }
+        ]
+      },
+      {
+        "pss_kib": 182825,
+        "rss_kib": 261884,
+        "processes": [
+          {
+            "pid": 31326,
+            "name": "claude",
+            "Rss": 261884,
+            "Pss": 182825
+          }
+        ]
+      },
+      {
+        "pss_kib": 182833,
+        "rss_kib": 261892,
+        "processes": [
+          {
+            "pid": 31326,
+            "name": "claude",
+            "Rss": 261892,
+            "Pss": 182833
+          }
+        ]
+      },
+      {
+        "pss_kib": 182825,
+        "rss_kib": 261884,
+        "processes": [
+          {
+            "pid": 31326,
+            "name": "claude",
+            "Rss": 261884,
+            "Pss": 182825
+          }
+        ]
+      },
+      {
+        "pss_kib": 182825,
+        "rss_kib": 261884,
+        "processes": [
+          {
+            "pid": 31326,
+            "name": "claude",
+            "Rss": 261884,
+            "Pss": 182825
+          }
+        ]
+      }
+    ],
+    "pss_mib": 178.5400390625,
+    "rss_mib": 255.74609375
+  },
+  {
+    "agent": "phi",
+    "scenario": "empty",
+    "trial": 1,
+    "command": [
+      "/home/cmcdo/sync/phi_public/phi",
+      "--no-host"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 5072,
+        "rss_kib": 18680,
+        "processes": [
+          {
+            "pid": 31371,
+            "name": "phi",
+            "Rss": 18680,
+            "Pss": 5072
+          }
+        ]
+      },
+      {
+        "pss_kib": 5072,
+        "rss_kib": 18680,
+        "processes": [
+          {
+            "pid": 31371,
+            "name": "phi",
+            "Rss": 18680,
+            "Pss": 5072
+          }
+        ]
+      },
+      {
+        "pss_kib": 5072,
+        "rss_kib": 18680,
+        "processes": [
+          {
+            "pid": 31371,
+            "name": "phi",
+            "Rss": 18680,
+            "Pss": 5072
+          }
+        ]
+      },
+      {
+        "pss_kib": 5072,
+        "rss_kib": 18680,
+        "processes": [
+          {
+            "pid": 31371,
+            "name": "phi",
+            "Rss": 18680,
+            "Pss": 5072
+          }
+        ]
+      },
+      {
+        "pss_kib": 5072,
+        "rss_kib": 18680,
+        "processes": [
+          {
+            "pid": 31371,
+            "name": "phi",
+            "Rss": 18680,
+            "Pss": 5072
+          }
+        ]
+      },
+      {
+        "pss_kib": 5072,
+        "rss_kib": 18680,
+        "processes": [
+          {
+            "pid": 31371,
+            "name": "phi",
+            "Rss": 18680,
+            "Pss": 5072
+          }
+        ]
+      }
+    ],
+    "pss_mib": 4.953125,
+    "rss_mib": 18.2421875
+  },
+  {
+    "agent": "phi",
+    "scenario": "loaded",
+    "trial": 1,
+    "command": [
+      "/home/cmcdo/sync/phi_public/phi",
+      "--no-host",
+      "--session",
+      "/tmp/phi-chat-memory-400k-verified/phi-loaded-1/phi.jsonl"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 9236,
+        "rss_kib": 23100,
+        "processes": [
+          {
+            "pid": 31421,
+            "name": "phi",
+            "Rss": 23100,
+            "Pss": 9236
+          }
+        ]
+      },
+      {
+        "pss_kib": 9236,
+        "rss_kib": 23100,
+        "processes": [
+          {
+            "pid": 31421,
+            "name": "phi",
+            "Rss": 23100,
+            "Pss": 9236
+          }
+        ]
+      },
+      {
+        "pss_kib": 9236,
+        "rss_kib": 23100,
+        "processes": [
+          {
+            "pid": 31421,
+            "name": "phi",
+            "Rss": 23100,
+            "Pss": 9236
+          }
+        ]
+      },
+      {
+        "pss_kib": 9236,
+        "rss_kib": 23100,
+        "processes": [
+          {
+            "pid": 31421,
+            "name": "phi",
+            "Rss": 23100,
+            "Pss": 9236
+          }
+        ]
+      },
+      {
+        "pss_kib": 9236,
+        "rss_kib": 23100,
+        "processes": [
+          {
+            "pid": 31421,
+            "name": "phi",
+            "Rss": 23100,
+            "Pss": 9236
+          }
+        ]
+      },
+      {
+        "pss_kib": 9236,
+        "rss_kib": 23100,
+        "processes": [
+          {
+            "pid": 31421,
+            "name": "phi",
+            "Rss": 23100,
+            "Pss": 9236
+          }
+        ]
+      },
+      {
+        "pss_kib": 9236,
+        "rss_kib": 23100,
+        "processes": [
+          {
+            "pid": 31421,
+            "name": "phi",
+            "Rss": 23100,
+            "Pss": 9236
+          }
+        ]
+      }
+    ],
+    "pss_mib": 9.01953125,
+    "rss_mib": 22.55859375
+  },
+  {
+    "agent": "pi",
+    "scenario": "empty",
+    "trial": 1,
+    "command": [
+      "/home/cmcdo/.local/bin/pi",
+      "--offline"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 90459,
+        "rss_kib": 94372,
+        "processes": [
+          {
+            "pid": 31441,
+            "name": "pi",
+            "Rss": 94372,
+            "Pss": 90459
+          }
+        ]
+      },
+      {
+        "pss_kib": 90459,
+        "rss_kib": 94372,
+        "processes": [
+          {
+            "pid": 31441,
+            "name": "pi",
+            "Rss": 94372,
+            "Pss": 90459
+          }
+        ]
+      },
+      {
+        "pss_kib": 90459,
+        "rss_kib": 94372,
+        "processes": [
+          {
+            "pid": 31441,
+            "name": "pi",
+            "Rss": 94372,
+            "Pss": 90459
+          }
+        ]
+      },
+      {
+        "pss_kib": 90459,
+        "rss_kib": 94372,
+        "processes": [
+          {
+            "pid": 31441,
+            "name": "pi",
+            "Rss": 94372,
+            "Pss": 90459
+          }
+        ]
+      },
+      {
+        "pss_kib": 90459,
+        "rss_kib": 94372,
+        "processes": [
+          {
+            "pid": 31441,
+            "name": "pi",
+            "Rss": 94372,
+            "Pss": 90459
+          }
+        ]
+      },
+      {
+        "pss_kib": 90459,
+        "rss_kib": 94372,
+        "processes": [
+          {
+            "pid": 31441,
+            "name": "pi",
+            "Rss": 94372,
+            "Pss": 90459
+          }
+        ]
+      },
+      {
+        "pss_kib": 90459,
+        "rss_kib": 94372,
+        "processes": [
+          {
+            "pid": 31441,
+            "name": "pi",
+            "Rss": 94372,
+            "Pss": 90459
+          }
+        ]
+      }
+    ],
+    "pss_mib": 88.3388671875,
+    "rss_mib": 92.16015625
+  },
+  {
+    "agent": "pi",
+    "scenario": "loaded",
+    "trial": 1,
+    "command": [
+      "/home/cmcdo/.local/bin/pi",
+      "--offline",
+      "--session",
+      "/tmp/phi-chat-memory-400k-verified/pi-loaded-1/pi.jsonl"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 144199,
+        "rss_kib": 148132,
+        "processes": [
+          {
+            "pid": 31505,
+            "name": "pi",
+            "Rss": 148132,
+            "Pss": 144199
+          }
+        ]
+      },
+      {
+        "pss_kib": 144199,
+        "rss_kib": 148132,
+        "processes": [
+          {
+            "pid": 31505,
+            "name": "pi",
+            "Rss": 148132,
+            "Pss": 144199
+          }
+        ]
+      },
+      {
+        "pss_kib": 144199,
+        "rss_kib": 148132,
+        "processes": [
+          {
+            "pid": 31505,
+            "name": "pi",
+            "Rss": 148132,
+            "Pss": 144199
+          }
+        ]
+      },
+      {
+        "pss_kib": 144199,
+        "rss_kib": 148132,
+        "processes": [
+          {
+            "pid": 31505,
+            "name": "pi",
+            "Rss": 148132,
+            "Pss": 144199
+          }
+        ]
+      },
+      {
+        "pss_kib": 144199,
+        "rss_kib": 148132,
+        "processes": [
+          {
+            "pid": 31505,
+            "name": "pi",
+            "Rss": 148132,
+            "Pss": 144199
+          }
+        ]
+      },
+      {
+        "pss_kib": 107603,
+        "rss_kib": 111536,
+        "processes": [
+          {
+            "pid": 31505,
+            "name": "pi",
+            "Rss": 111536,
+            "Pss": 107603
+          }
+        ]
+      },
+      {
+        "pss_kib": 107603,
+        "rss_kib": 111536,
+        "processes": [
+          {
+            "pid": 31505,
+            "name": "pi",
+            "Rss": 111536,
+            "Pss": 107603
+          }
+        ]
+      }
+    ],
+    "pss_mib": 140.8193359375,
+    "rss_mib": 144.66015625
+  },
+  {
+    "agent": "claude",
+    "scenario": "empty",
+    "trial": 1,
+    "command": [
+      "/home/cmcdo/.local/bin/claude"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [
+      "Confirmed trust for isolated synthetic workspace"
+    ],
+    "samples": [
+      {
+        "pss_kib": 177145,
+        "rss_kib": 253768,
+        "processes": [
+          {
+            "pid": 31568,
+            "name": "claude",
+            "Rss": 253768,
+            "Pss": 177145
+          }
+        ]
+      },
+      {
+        "pss_kib": 175273,
+        "rss_kib": 251896,
+        "processes": [
+          {
+            "pid": 31568,
+            "name": "claude",
+            "Rss": 251896,
+            "Pss": 175273
+          }
+        ]
+      },
+      {
+        "pss_kib": 175265,
+        "rss_kib": 251888,
+        "processes": [
+          {
+            "pid": 31568,
+            "name": "claude",
+            "Rss": 251888,
+            "Pss": 175265
+          }
+        ]
+      },
+      {
+        "pss_kib": 175301,
+        "rss_kib": 251924,
+        "processes": [
+          {
+            "pid": 31568,
+            "name": "claude",
+            "Rss": 251924,
+            "Pss": 175301
+          }
+        ]
+      },
+      {
+        "pss_kib": 175301,
+        "rss_kib": 251924,
+        "processes": [
+          {
+            "pid": 31568,
+            "name": "claude",
+            "Rss": 251924,
+            "Pss": 175301
+          }
+        ]
+      },
+      {
+        "pss_kib": 175293,
+        "rss_kib": 251916,
+        "processes": [
+          {
+            "pid": 31568,
+            "name": "claude",
+            "Rss": 251916,
+            "Pss": 175293
+          }
+        ]
+      },
+      {
+        "pss_kib": 175293,
+        "rss_kib": 251916,
+        "processes": [
+          {
+            "pid": 31568,
+            "name": "claude",
+            "Rss": 251916,
+            "Pss": 175293
+          }
+        ]
+      }
+    ],
+    "pss_mib": 171.1845703125,
+    "rss_mib": 246.01171875
+  },
+  {
+    "agent": "claude",
+    "scenario": "loaded",
+    "trial": 1,
+    "command": [
+      "/home/cmcdo/.local/bin/claude",
+      "--resume",
+      "c92dbb0f-7159-433d-a5ad-6e3dc6f37c6f"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [
+      "Confirmed trust for isolated synthetic workspace"
+    ],
+    "samples": [
+      {
+        "pss_kib": 182549,
+        "rss_kib": 261656,
+        "processes": [
+          {
+            "pid": 31615,
+            "name": "claude",
+            "Rss": 261656,
+            "Pss": 182549
+          }
+        ]
+      },
+      {
+        "pss_kib": 181856,
+        "rss_kib": 261012,
+        "processes": [
+          {
+            "pid": 31615,
+            "name": "claude",
+            "Rss": 261012,
+            "Pss": 181856
+          }
+        ]
+      },
+      {
+        "pss_kib": 181732,
+        "rss_kib": 260888,
+        "processes": [
+          {
+            "pid": 31615,
+            "name": "claude",
+            "Rss": 260888,
+            "Pss": 181732
+          }
+        ]
+      },
+      {
+        "pss_kib": 181732,
+        "rss_kib": 260888,
+        "processes": [
+          {
+            "pid": 31615,
+            "name": "claude",
+            "Rss": 260888,
+            "Pss": 181732
+          }
+        ]
+      },
+      {
+        "pss_kib": 181740,
+        "rss_kib": 260896,
+        "processes": [
+          {
+            "pid": 31615,
+            "name": "claude",
+            "Rss": 260896,
+            "Pss": 181740
+          }
+        ]
+      },
+      {
+        "pss_kib": 181520,
+        "rss_kib": 260676,
+        "processes": [
+          {
+            "pid": 31615,
+            "name": "claude",
+            "Rss": 260676,
+            "Pss": 181520
+          }
+        ]
+      },
+      {
+        "pss_kib": 181448,
+        "rss_kib": 260604,
+        "processes": [
+          {
+            "pid": 31615,
+            "name": "claude",
+            "Rss": 260604,
+            "Pss": 181448
+          }
+        ]
+      }
+    ],
+    "pss_mib": 177.47265625,
+    "rss_mib": 254.7734375
+  },
+  {
+    "agent": "phi",
+    "scenario": "empty",
+    "trial": 2,
+    "command": [
+      "/home/cmcdo/sync/phi_public/phi",
+      "--no-host"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 5069,
+        "rss_kib": 18732,
+        "processes": [
+          {
+            "pid": 31702,
+            "name": "phi",
+            "Rss": 18732,
+            "Pss": 5069
+          }
+        ]
+      },
+      {
+        "pss_kib": 5069,
+        "rss_kib": 18732,
+        "processes": [
+          {
+            "pid": 31702,
+            "name": "phi",
+            "Rss": 18732,
+            "Pss": 5069
+          }
+        ]
+      },
+      {
+        "pss_kib": 5069,
+        "rss_kib": 18732,
+        "processes": [
+          {
+            "pid": 31702,
+            "name": "phi",
+            "Rss": 18732,
+            "Pss": 5069
+          }
+        ]
+      },
+      {
+        "pss_kib": 5069,
+        "rss_kib": 18732,
+        "processes": [
+          {
+            "pid": 31702,
+            "name": "phi",
+            "Rss": 18732,
+            "Pss": 5069
+          }
+        ]
+      },
+      {
+        "pss_kib": 5069,
+        "rss_kib": 18732,
+        "processes": [
+          {
+            "pid": 31702,
+            "name": "phi",
+            "Rss": 18732,
+            "Pss": 5069
+          }
+        ]
+      },
+      {
+        "pss_kib": 5069,
+        "rss_kib": 18732,
+        "processes": [
+          {
+            "pid": 31702,
+            "name": "phi",
+            "Rss": 18732,
+            "Pss": 5069
+          }
+        ]
+      }
+    ],
+    "pss_mib": 4.9501953125,
+    "rss_mib": 18.29296875
+  },
+  {
+    "agent": "phi",
+    "scenario": "loaded",
+    "trial": 2,
+    "command": [
+      "/home/cmcdo/sync/phi_public/phi",
+      "--no-host",
+      "--session",
+      "/tmp/phi-chat-memory-400k-verified/phi-loaded-2/phi.jsonl"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22892,
+        "processes": [
+          {
+            "pid": 31720,
+            "name": "phi",
+            "Rss": 22892,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22892,
+        "processes": [
+          {
+            "pid": 31720,
+            "name": "phi",
+            "Rss": 22892,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22892,
+        "processes": [
+          {
+            "pid": 31720,
+            "name": "phi",
+            "Rss": 22892,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22892,
+        "processes": [
+          {
+            "pid": 31720,
+            "name": "phi",
+            "Rss": 22892,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22892,
+        "processes": [
+          {
+            "pid": 31720,
+            "name": "phi",
+            "Rss": 22892,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22892,
+        "processes": [
+          {
+            "pid": 31720,
+            "name": "phi",
+            "Rss": 22892,
+            "Pss": 9200
+          }
+        ]
+      },
+      {
+        "pss_kib": 9200,
+        "rss_kib": 22892,
+        "processes": [
+          {
+            "pid": 31720,
+            "name": "phi",
+            "Rss": 22892,
+            "Pss": 9200
+          }
+        ]
+      }
+    ],
+    "pss_mib": 8.984375,
+    "rss_mib": 22.35546875
+  },
+  {
+    "agent": "pi",
+    "scenario": "empty",
+    "trial": 2,
+    "command": [
+      "/home/cmcdo/.local/bin/pi",
+      "--offline"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 91005,
+        "rss_kib": 94920,
+        "processes": [
+          {
+            "pid": 31778,
+            "name": "pi",
+            "Rss": 94920,
+            "Pss": 91005
+          }
+        ]
+      },
+      {
+        "pss_kib": 91005,
+        "rss_kib": 94920,
+        "processes": [
+          {
+            "pid": 31778,
+            "name": "pi",
+            "Rss": 94920,
+            "Pss": 91005
+          }
+        ]
+      },
+      {
+        "pss_kib": 91005,
+        "rss_kib": 94920,
+        "processes": [
+          {
+            "pid": 31778,
+            "name": "pi",
+            "Rss": 94920,
+            "Pss": 91005
+          }
+        ]
+      },
+      {
+        "pss_kib": 91005,
+        "rss_kib": 94920,
+        "processes": [
+          {
+            "pid": 31778,
+            "name": "pi",
+            "Rss": 94920,
+            "Pss": 91005
+          }
+        ]
+      },
+      {
+        "pss_kib": 91005,
+        "rss_kib": 94920,
+        "processes": [
+          {
+            "pid": 31778,
+            "name": "pi",
+            "Rss": 94920,
+            "Pss": 91005
+          }
+        ]
+      },
+      {
+        "pss_kib": 91005,
+        "rss_kib": 94920,
+        "processes": [
+          {
+            "pid": 31778,
+            "name": "pi",
+            "Rss": 94920,
+            "Pss": 91005
+          }
+        ]
+      },
+      {
+        "pss_kib": 91005,
+        "rss_kib": 94920,
+        "processes": [
+          {
+            "pid": 31778,
+            "name": "pi",
+            "Rss": 94920,
+            "Pss": 91005
+          }
+        ]
+      }
+    ],
+    "pss_mib": 88.8720703125,
+    "rss_mib": 92.6953125
+  },
+  {
+    "agent": "pi",
+    "scenario": "loaded",
+    "trial": 2,
+    "command": [
+      "/home/cmcdo/.local/bin/pi",
+      "--offline",
+      "--session",
+      "/tmp/phi-chat-memory-400k-verified/pi-loaded-2/pi.jsonl"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [],
+    "samples": [
+      {
+        "pss_kib": 142498,
+        "rss_kib": 146432,
+        "processes": [
+          {
+            "pid": 31862,
+            "name": "pi",
+            "Rss": 146432,
+            "Pss": 142498
+          }
+        ]
+      },
+      {
+        "pss_kib": 142498,
+        "rss_kib": 146432,
+        "processes": [
+          {
+            "pid": 31862,
+            "name": "pi",
+            "Rss": 146432,
+            "Pss": 142498
+          }
+        ]
+      },
+      {
+        "pss_kib": 142498,
+        "rss_kib": 146432,
+        "processes": [
+          {
+            "pid": 31862,
+            "name": "pi",
+            "Rss": 146432,
+            "Pss": 142498
+          }
+        ]
+      },
+      {
+        "pss_kib": 142498,
+        "rss_kib": 146432,
+        "processes": [
+          {
+            "pid": 31862,
+            "name": "pi",
+            "Rss": 146432,
+            "Pss": 142498
+          }
+        ]
+      },
+      {
+        "pss_kib": 142498,
+        "rss_kib": 146432,
+        "processes": [
+          {
+            "pid": 31862,
+            "name": "pi",
+            "Rss": 146432,
+            "Pss": 142498
+          }
+        ]
+      },
+      {
+        "pss_kib": 105896,
+        "rss_kib": 109828,
+        "processes": [
+          {
+            "pid": 31862,
+            "name": "pi",
+            "Rss": 109828,
+            "Pss": 105896
+          }
+        ]
+      },
+      {
+        "pss_kib": 105896,
+        "rss_kib": 109828,
+        "processes": [
+          {
+            "pid": 31862,
+            "name": "pi",
+            "Rss": 109828,
+            "Pss": 105896
+          }
+        ]
+      }
+    ],
+    "pss_mib": 139.158203125,
+    "rss_mib": 143.0
+  },
+  {
+    "agent": "claude",
+    "scenario": "empty",
+    "trial": 2,
+    "command": [
+      "/home/cmcdo/.local/bin/claude"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": false,
+    "interactions": [
+      "Confirmed trust for isolated synthetic workspace"
+    ],
+    "samples": [
+      {
+        "pss_kib": 176912,
+        "rss_kib": 253572,
+        "processes": [
+          {
+            "pid": 31903,
+            "name": "claude",
+            "Rss": 253572,
+            "Pss": 176912
+          }
+        ]
+      },
+      {
+        "pss_kib": 174440,
+        "rss_kib": 251212,
+        "processes": [
+          {
+            "pid": 31903,
+            "name": "claude",
+            "Rss": 251212,
+            "Pss": 174440
+          }
+        ]
+      },
+      {
+        "pss_kib": 174624,
+        "rss_kib": 251396,
+        "processes": [
+          {
+            "pid": 31903,
+            "name": "claude",
+            "Rss": 251396,
+            "Pss": 174624
+          }
+        ]
+      },
+      {
+        "pss_kib": 174660,
+        "rss_kib": 251432,
+        "processes": [
+          {
+            "pid": 31903,
+            "name": "claude",
+            "Rss": 251432,
+            "Pss": 174660
+          }
+        ]
+      },
+      {
+        "pss_kib": 174660,
+        "rss_kib": 251432,
+        "processes": [
+          {
+            "pid": 31903,
+            "name": "claude",
+            "Rss": 251432,
+            "Pss": 174660
+          }
+        ]
+      },
+      {
+        "pss_kib": 174652,
+        "rss_kib": 251424,
+        "processes": [
+          {
+            "pid": 31903,
+            "name": "claude",
+            "Rss": 251424,
+            "Pss": 174652
+          }
+        ]
+      },
+      {
+        "pss_kib": 174660,
+        "rss_kib": 251432,
+        "processes": [
+          {
+            "pid": 31903,
+            "name": "claude",
+            "Rss": 251432,
+            "Pss": 174660
+          }
+        ]
+      }
+    ],
+    "pss_mib": 170.56640625,
+    "rss_mib": 245.5390625
+  },
+  {
+    "agent": "claude",
+    "scenario": "loaded",
+    "trial": 2,
+    "command": [
+      "/home/cmcdo/.local/bin/claude",
+      "--resume",
+      "3611f95a-18ba-46a3-a27b-16403e3c78ac"
+    ],
+    "running_at_sample": true,
+    "sentinel_seen": true,
+    "interactions": [
+      "Confirmed trust for isolated synthetic workspace"
+    ],
+    "samples": [
+      {
+        "pss_kib": 184179,
+        "rss_kib": 263100,
+        "processes": [
+          {
+            "pid": 31995,
+            "name": "claude",
+            "Rss": 263100,
+            "Pss": 184179
+          }
+        ]
+      },
+      {
+        "pss_kib": 184203,
+        "rss_kib": 263124,
+        "processes": [
+          {
+            "pid": 31995,
+            "name": "claude",
+            "Rss": 263124,
+            "Pss": 184203
+          }
+        ]
+      },
+      {
+        "pss_kib": 184479,
+        "rss_kib": 263400,
+        "processes": [
+          {
+            "pid": 31995,
+            "name": "claude",
+            "Rss": 263400,
+            "Pss": 184479
+          }
+        ]
+      },
+      {
+        "pss_kib": 184479,
+        "rss_kib": 263400,
+        "processes": [
+          {
+            "pid": 31995,
+            "name": "claude",
+            "Rss": 263400,
+            "Pss": 184479
+          }
+        ]
+      },
+      {
+        "pss_kib": 185068,
+        "rss_kib": 264044,
+        "processes": [
+          {
+            "pid": 31995,
+            "name": "claude",
+            "Rss": 264044,
+            "Pss": 185068
+          }
+        ]
+      },
+      {
+        "pss_kib": 182192,
+        "rss_kib": 261168,
+        "processes": [
+          {
+            "pid": 31995,
+            "name": "claude",
+            "Rss": 261168,
+            "Pss": 182192
+          }
+        ]
+      },
+      {
+        "pss_kib": 182192,
+        "rss_kib": 261168,
+        "processes": [
+          {
+            "pid": 31995,
+            "name": "claude",
+            "Rss": 261168,
+            "Pss": 182192
+          }
+        ]
+      }
+    ],
+    "pss_mib": 179.8857421875,
+    "rss_mib": 256.95703125
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "date_utc": "2026-11-07T11:27:36.329104+00:00",
+  "platform": "Linux-7.2.11-arch1-1-x86_64-with-glibc2.44",
+  "phi_binary_sha256": "9065393808778157fc6c1d523157c8608d9c162fccc0687e2f23e6de4683e95a",
+  "pi_version": "1.5.0",
+  "claude_version": "2.1.319 (Claude Code)",
+  "codex_version": "codex-cli 0.166.0",
+  "backend_modes": {
+    "phi": "--no-host",
+    "codex": "--no-daemon (local backend)"
+  },
+  "content_tokens": 400000,
+  "tokenizer": "tiktoken cl100k_base",
+  "messages": 400,
+  "turns": 200,
+  "tokens_per_message": 1000,
+  "payload_sha256": "d7096f4b805739577c622f434a175bebc6a737955b619433671db41849ae34d2",
+  "terminal": "30 rows x 100 columns",
+  "settle_seconds": 15.0,
+  "metric": "Median summed process-tree RSS; PSS also retained",
+  "limitations": [
+    "Text payload only; excludes framing/system/tool tokens.",
+    "Common reference tokenizer, not model-specific token counts.",
+    "Resumed history size, not a claim that the selected model supports this inference context.",
+    "Synthetic text-only history, not a tool-heavy coding session.",
+    "Isolated default profiles; not comparable to older normal-profile idle benchmark.",
+    "No model request submitted; not generation peak memory.",
+    "Check terminal logs for successful resume before publishing numbers."
+  ]
+}

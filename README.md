@@ -18,9 +18,9 @@ Phi is a terminal coding agent written in C.
 
 ## Memory and Performance
 
-<img src="docs/images/memory-comparison.svg" alt="Phi uses 1.4 MiB on disk, 6.3 MiB of RAM and starts in 33 ms, compared with 304–516 MiB, 108–450 MiB and 360–1205 ms for Pi, Claude Code and Codex" width="800">
+<img src="docs/images/memory-comparison.svg" alt="RSS with a 400K-token chat: Phi 22.4 MiB, Pi 144.3 MiB, Claude Code 255.7 MiB; Codex 563.0 MiB. All RAM values use three-launch medians sampled at 15–17 seconds. Empty-session RSS, install size, and startup time are shown separately." width="1040">
 
-Measured on one Linux machine. The trials and the environment they were run in are in [docs/benchmarks](docs/benchmarks).
+Measured on Linux. [RAM methodology](docs/benchmarks/chat-memory/400k/) · [All benchmarks](docs/benchmarks).
 
 ## Build and installation
 
