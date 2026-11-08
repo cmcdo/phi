@@ -77,11 +77,11 @@ Chats can also run headless. `phi --bg PROMPT` starts one in the background, `ph
 For more command-line modes and options, run `phi --help`.
 ## Customisation
 
-Phi is very customisable—ask your agent to make it your own. These bundled themes give a taste of what’s possible:
+Phi is very customisable, these bundled themes give a taste of what’s possible:
 
 ![Switching between Phi’s bundled themes](docs/images/customisation.gif)
 
-Use `/theme` to list themes. Your agent can explain how themes work, create a new one, or go further with native C extensions.
+Use `/theme` to list themes.
 
 - [Themes](docs/themes.md) — colours, layout, and appearance.
 - [Extensions](docs/extensions.md) — tools, commands, hooks, providers, and native UI behaviour.
@@ -90,7 +90,7 @@ Use `/theme` to list themes. Your agent can explain how themes work, create a ne
 
 Native C extensions can add tools, slash commands, model providers, agent behaviour, and UI components—without rebuilding Phi itself. They can also integrate external services, including MCP servers.
 
-Extensions can also add widgets: styled text above or below the prompt, or animated, interactive cell-based displays in the header and welcome area. The bundled planet and Game of Life demonstrate the native widget interface, which supports animation timers, pointer input, and controls. You could use it for a live status display, a visualisation, or a small interactive tool.
+Extensions can also add widgets: styled text above or below the prompt, or animated, interactive cell-based displays in the header and welcome area. The bundled planet and Game of Life demonstrate the native widget interface, which supports animation timers, pointer input, and controls. 
 
 Ask your agent to build what you need. Phi includes its extension SDK and authoring guide, and can compile and reload extensions once you approve them.
 
