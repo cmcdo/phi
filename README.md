@@ -81,7 +81,7 @@ Phi is very customisable—ask your agent to make it your own. These bundled the
 
 ![Switching between Phi’s bundled themes](docs/images/customisation.gif)
 
-Use `/theme` to list themes, or `/theme default` to return to the planet. Your agent can explain how themes work, create a new one, or go further with native C extensions.
+Use `/theme` to list themes. Your agent can explain how themes work, create a new one, or go further with native C extensions.
 
 - [Themes](docs/themes.md) — colours, layout, and appearance.
 - [Extensions](docs/extensions.md) — tools, commands, hooks, providers, and native UI behaviour.
