@@ -185,11 +185,22 @@ static int record_node(struct transcript *t, const char *type, json_object *data
 	return write_event(t, type, data, t->next_id ? t->next_id : 1, t->head, 1);
 }
 
-static int saving_disabled;
+static int saving_disabled, temporary_session;
+
+void transcript_set_temporary(void) {
+
+	/* Process-lifetime policy: clearing or switching chats cannot enable saving. */
+	temporary_session = saving_disabled = 1;
+}
+
+int transcript_temporary(void) {
+
+	return temporary_session;
+}
 
 void transcript_disable(int disabled) {
 
-	saving_disabled = disabled;
+	saving_disabled = temporary_session || disabled;
 }
 
 int transcript_disabled(void) {

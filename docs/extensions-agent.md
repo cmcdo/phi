@@ -222,6 +222,13 @@ Use `api->cancelled()` in long synchronous callbacks. Keep native callbacks shor
 
 For anything beyond a text answer, register the tool with `api->register_tool_ex(api->context, definition_json, callback, userdata)` (check `PHI_API_HAS(api, register_tool_ex)`). The definition is JSON: `name`, `description`, `parameters`, and optionally `label` (card heading), `detail_key` (argument shown beside it), `prompt_snippet` (one line added to the system prompt while the tool is active), `prompt_guidelines` (up to 8 rules), `execution_mode` and `structured` (default true).
 
+A tool can opt into `"hide_success": true` in its registration definition. The
+terminal UI hides its routine preview and successful cards, while failures and
+approval prompts remain visible. This is display only: model context, saved
+transcripts, and other clients are unchanged. Restored calls use the current
+registration; if the tool is unavailable they remain visible. The default is
+false. This option is independent of themes.
+
 A structured tool writes a JSON object result into a 1 MiB buffer:
 
 - `content`: what the model sees (text, or JSON which is serialized).
@@ -470,6 +477,12 @@ reports accepted queue entries. No event or service answers a human approval.
 - `send_message {content, custom_type?, trigger_turn?}`: hidden context the model sees, persisted with the session; `trigger_turn` runs the agent on it.
 - `append_entry {custom_type, data}` / `get_custom_entries {custom_type?}`: durable per-session records the model never sees.
 - `get_session`, `get_branch`, `get_system_prompt`, `get_commands`: read the current state.
+  `get_session.temporary` is true when core `--temp` is active; `file` is empty.
+  Extensions must not capture temporary-chat messages or write them to memory.
+  This is a process-lifetime policy, including after `new_session`. Core disables
+  transcript/draft saving and persistent hosting before extensions initialize.
+  Native extensions are trusted, not sandboxed: this flag is not an OS-level
+  prohibition on arbitrary files, external logging or provider retention.
 - `set_model`, `set_thinking_level`, `set_active_tools {tools|null}`, `set_session_name`, `set_label`.
 - `abort`, `shutdown`, `reload` (after the current callback), and, only while no prompt is running, `compact`, `new_session`, `switch_session`, `navigate_tree`, `fork`.
 

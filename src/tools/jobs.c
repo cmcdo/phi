@@ -681,6 +681,18 @@ void tools_reap_jobs(void) {
 	}
 }
 
+int tools_jobs_pending(void) {
+
+	tools_reap_jobs();
+	for (size_t i = 0; i < JOB_LIMIT; i++) {
+		if (jobs[i].id && (!jobs[i].exited || !jobs[i].collector_exited || jobs[i].log_fd >= 0)) {
+			return 1;
+		}
+	}
+
+	return 0;
+}
+
 void tools_abort_jobs(void) {
 
 	/* Best-effort emergency path for Phi's signal handler: kill() is sufficient

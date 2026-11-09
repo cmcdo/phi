@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #define _POSIX_C_SOURCE 200809L
 #include "core/proctitle.h"
 #include "core/agent.h"
@@ -31,6 +32,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <errno.h>
 
 static void extension_message(const char *text) {
 
@@ -385,7 +387,10 @@ static int usage(const char *program, int error) {
 		"      --model ID          model for this run (not saved)\n"
 		"      --thinking LEVEL    off|minimal|low|medium|high|xhigh|max|ultra (alias --effort);\n"
 		"                          a level the model lacks becomes its nearest\n"
+		"      --approval LEVEL    off|dangerous|all for this run (not saved)\n"
+		"      --sandbox MODE      off|workspace|strict for this run (not saved)\n"
 		"      --no-session        do not save a transcript\n"
+		"      --temp              temporary chat: no transcript, drafts, or hosted scrollback\n"
 		"  -c, --continue          continue the newest session in this directory\n"
 		"  -r, --resume [FILE]     resume a transcript (a picker in phi-ui without FILE)\n"
 		"      --session FILE      resume FILE\n"
@@ -626,8 +631,66 @@ static int close_chat_control(int force, char *error, size_t size) {
 	return 1;
 }
 
+/* Capture the pathname before an atomic rebuild makes /proc/self/exe name
+   the old inode with a " (deleted)" suffix. Restart opens the NEW inode here. */
+static char executable_path[4096];
+
+static int prepare_restart(struct agent *agent, char *session, size_t size) {
+
+	if (host_busy() || host_pending_count() || bridge_pending() ||
+		!terminal_restart_ready() || tools_jobs_pending()) {
+		terminal_notice("Cannot restart yet: finish active work, drain background job output, and clear drafts/queued messages first.", 1);
+		return -1;
+	}
+	if (transcript_disabled() || !*agent->transcript.path || !agent->transcript.file) {
+		terminal_notice("Restart needs a saved conversation. Send a message first; --no-session chats cannot restart.", 1);
+		return -1;
+	}
+	int fd = *executable_path ? open(executable_path, O_RDONLY | O_CLOEXEC) : -1;
+	struct stat st;
+	unsigned char magic[4];
+	if (fd < 0 || fstat(fd, &st) || !S_ISREG(st.st_mode) ||
+		access(executable_path, X_OK) || pread(fd, magic, sizeof(magic), 0) != sizeof(magic) ||
+		memcmp(magic, "\177ELF", sizeof(magic))) {
+		if (fd >= 0) {
+			close(fd);
+		}
+		terminal_notice("Cannot restart: the executable pathname is missing, unreadable, or not an executable ELF binary. Rebuild Phi first.", 1);
+		return -1;
+	}
+	transcript_sync(&agent->transcript, agent->history);
+	if (agent->transcript.failed ||
+		agent->transcript.saved != json_object_array_length(agent->history) ||
+		!transcript_select(&agent->transcript, agent->transcript.head, agent->transcript.saved) ||
+		fflush(agent->transcript.file) || fsync(fileno(agent->transcript.file))) {
+		close(fd);
+		terminal_notice("Cannot restart: the conversation could not be saved safely. The current chat is still running.", 1);
+		return -1;
+	}
+	snprintf(session, size, "%s", agent->transcript.path);
+	if (chats_hosted() && setenv("PHI_CHAT_SESSION_FILE", session, 1)) {
+		close(fd);
+		terminal_notice("Cannot prepare the hosted session for restart.", 1);
+		return -1;
+	}
+
+	return fd;
+}
+
 int main(int argc, char **argv) {
 
+	ssize_t executable_size = readlink("/proc/self/exe", executable_path, sizeof(executable_path) - 1);
+	if (executable_size > 0 && (size_t)executable_size < sizeof(executable_path) - 1) {
+		executable_path[executable_size] = 0;
+		/* A second rebuild can race with startup after fexecve. */
+		const char deleted[] = " (deleted)";
+		if ((size_t)executable_size >= sizeof(deleted) - 1 &&
+			!strcmp(executable_path + executable_size - (sizeof(deleted) - 1), deleted)) {
+			executable_path[executable_size - (sizeof(deleted) - 1)] = 0;
+		}
+	} else {
+		executable_path[0] = 0;
+	}
 	argv = proctitle_init(argc, argv);
 	chats_prepare(); /* Protect an inherited startup lock before spawning anything. */
 	if (chats_hosted()) {
@@ -670,7 +733,9 @@ int main(int argc, char **argv) {
 	} start = START_NEW;
 
 	const char *transcript_path = NULL, *model = NULL, *thinking = NULL;
+	const char *approval = NULL, *sandbox = NULL;
 	int print = 0, no_session = 0, explicit_mode = 0, background = 0, no_host = 0;
+	int temporary = 0;
 	static char *extension_flags[32];
 	size_t extension_flag_count = 0;
 	char **prompts = calloc((size_t)argc + 1, sizeof(*prompts));
@@ -686,9 +751,15 @@ int main(int argc, char **argv) {
 			return usage(argv[0], 0);
 		} else if (!strcmp(arg, "--login")) {
 			free(prompts);
-			return codex_auth_login(NULL) ? 0 : 1;
+			return terminal_login() ? 0 : 1;
 		} else if (!strcmp(arg, "-p") || !strcmp(arg, "--print")) {
 			print = 1;
+		} else if (!strcmp(arg, "--temp")) {
+			temporary = 1;
+		} else if (!strncmp(arg, "--temp=", 7)) {
+			fprintf(stderr, "--temp does not take a value.\n");
+			free(prompts);
+			return 2;
 		} else if (!strcmp(arg, "--no-session")) {
 			no_session = 1;
 		} else if (!strcmp(arg, "--bg")) {
@@ -716,6 +787,12 @@ int main(int argc, char **argv) {
 			i++;
 		} else if ((!strcmp(arg, "--thinking") || !strcmp(arg, "--effort")) && next) {
 			thinking = next;
+			i++;
+		} else if (!strcmp(arg, "--approval") && next) {
+			approval = next;
+			i++;
+		} else if (!strcmp(arg, "--sandbox") && next) {
+			sandbox = next;
 			i++;
 		} else if (!strcmp(arg, "--session") && next) {
 			start = START_PATH;
@@ -753,6 +830,16 @@ int main(int argc, char **argv) {
 		} else {
 			prompts[prompt_count++] = argv[i];
 		}
+	}
+	/* Decide persistence before any host, UI, extension or session starts. */
+	if (temporary) {
+		if (start != START_NEW || background || chats_hosted() || getenv("PHI_HOST_SOCKET")) {
+			fprintf(stderr, "--temp requires a new foreground chat outside phi-host; it cannot resume or continue a saved session.\n");
+			free(prompts);
+			return 2;
+		}
+		no_session = no_host = 1;
+		transcript_set_temporary();
 	}
 	/* The launcher selected and locked this exact transcript. In particular,
        --continue must not select a different 'newest' file during startup. */
@@ -835,6 +922,19 @@ int main(int argc, char **argv) {
 			return 2;
 		}
 		snprintf(settings.effort, sizeof(settings.effort), "%s", effort);
+	}
+	if ((approval && settings_approval_value(approval) < 0) ||
+		(sandbox && settings_sandbox_value(sandbox) < 0)) {
+		fprintf(stderr, "Invalid --approval or --sandbox value.\n");
+		free(prompts);
+		free(piped);
+		return 2;
+	}
+	if (approval) {
+		settings.approval = settings_approval_value(approval);
+	}
+	if (sandbox) {
+		settings.sandbox = settings_sandbox_value(sandbox);
 	}
 	if (no_session) {
 		transcript_disable(1);
@@ -927,6 +1027,9 @@ int main(int argc, char **argv) {
 		terminal_resume(&agent);
 	}
 	modes_header();
+	if (temporary && mode == MODE_INTERACTIVE) {
+		terminal_notice("Temporary chat: transcript and draft saving are disabled.", 0);
+	}
 	/* Interactive prompts on the command line are the chat's first messages. */
 	for (size_t i = 0; mode == MODE_INTERACTIVE && i < prompt_count; i++) {
 		char *first = expand_resources(strdup(prompts[i]));
@@ -949,7 +1052,9 @@ int main(int argc, char **argv) {
 		chats_begin(&agent);
 	}
 
-	int status = 0;
+	int status = 0, restart_fd = -1;
+	char restart_session[4096];
+	struct settings restart_settings = {0};
 	char *message;
 	if (mode == MODE_PRINT || mode == MODE_JSON) {
 		/* One-shot: each prompt in turn, then any work extensions queued. */
@@ -1067,6 +1172,16 @@ int main(int argc, char **argv) {
 				continue;
 			}
 			int command = command_run(&agent, &settings, message);
+			if (command == 3) {
+				restart_fd = prepare_restart(&agent, restart_session, sizeof(restart_session));
+				if (restart_fd >= 0) {
+					restart_settings = settings;
+					snprintf(restart_settings.model, sizeof(restart_settings.model), "%s", agent.model);
+					snprintf(restart_settings.effort, sizeof(restart_settings.effort), "%s", terminal_effort());
+					free(message);
+					break;
+				}
+			}
 			if (command == 2) {
 				free(message);
 				break;
@@ -1079,13 +1194,15 @@ int main(int argc, char **argv) {
 	}
 	if (events_wanted("session_shutdown")) {
 		json_object *payload = json_object_new_object();
-		json_object_object_add(payload, "reason", json_object_new_string("exit"));
+		json_object_object_add(payload, "reason", json_object_new_string(restart_fd >= 0 ? "restart" : "exit"));
 		json_object_object_add(
 			payload, "session_file", json_object_new_string(agent.transcript.path));
 		events_emit("session_shutdown", payload, NULL, NULL);
 		json_object_put(payload);
 	}
-	chats_end();
+	if (restart_fd < 0) {
+		chats_end();
+	}
 	terminal_set_service(NULL, NULL);
 	bridge_close();
 	bridge_set_cancel(NULL);
@@ -1097,6 +1214,27 @@ int main(int argc, char **argv) {
 	modes_stop();
 	free(prompts);
 	free(piped);
+	if (restart_fd >= 0) {
+		/* Same PID and PTY: phi-host and attached viewers remain in place.
+		   No original prompts are replayed. Pinning the fd avoids a rebuild race. */
+		char *next[48] = {executable_path, "--no-host", "--session", restart_session,
+			"--model", restart_settings.model, "--thinking", restart_settings.effort,
+			"--approval", (char *)settings_approval_name(restart_settings.approval),
+			"--sandbox", (char *)settings_sandbox_name(restart_settings.sandbox)};
+		size_t at = 12;
+		for (size_t i = 0; i < extension_flag_count; i++) {
+			next[at++] = extension_flags[i];
+		}
+		next[at] = NULL;
+		fprintf(stderr, "Restarting Phi; resuming %s\n", restart_session);
+		fflush(NULL);
+		fexecve(restart_fd, next, environ);
+		int saved_errno = errno;
+		close(restart_fd);
+		fprintf(stderr, "Restart failed: %s\nYour conversation is saved. Resume with: %s --session '%s'\n",
+			strerror(saved_errno), executable_path, restart_session);
+		return 1;
+	}
 	if (mode == MODE_INTERACTIVE) {
 		puts("Bye!");
 	}

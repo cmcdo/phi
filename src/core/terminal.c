@@ -37,6 +37,22 @@ static inline void ui_close(void) {
 
 }
 
+static inline void ui_set_temporary(int temporary) {
+
+	(void)temporary;
+}
+
+static inline void ui_set_tool_visibility(int (*hidden)(const char *)) {
+
+	(void)hidden;
+}
+
+static inline int ui_tool_hidden(const char *name) {
+
+	(void)name;
+	return 0;
+}
+
 static inline int ui_board(void) {
 
 	return 0;
@@ -198,6 +214,14 @@ static inline int ui_tool_guard(json_object *c, int a) {
 }
 
 static inline int ui_cancel(void) {
+
+	return 0;
+}
+
+static inline int ui_cancel_copy(const char *text, int (*copy)(const char *)) {
+
+	(void)text;
+	(void)copy;
 
 	return 0;
 }
@@ -501,6 +525,7 @@ static int tui;
 static struct termios saved_terminal;
 static int busy_terminal;
 static int cancelled;
+static const char *login_url;
 static int turn_tools;
 static const char *initial_effort;
 static int approval_mode, turn_active, extension_activity_depth;
@@ -602,6 +627,8 @@ static int session_gate(
 /* A cancelled preview must not produce an end event for a card never opened. */
 static int tool_presented;
 static int provider_tool_presented;
+static int tool_concealed;
+static json_object *concealed_call;
 static struct usage_client *usage_client;
 
 static void flush_displays(void);
@@ -640,6 +667,9 @@ static void styled(const char *text, int color, int bold) {
 		return;
 	}
 	if (tui) {
+		if (tool_running && tool_concealed) {
+			return;
+		}
 		if (tool_running) {
 			ui_tool_stream(text);
 		}
@@ -664,6 +694,9 @@ static void display(const char *text, FILE *destination) {
 		return;
 	}
 	if (tui) {
+		if (tool_running && tool_concealed) {
+			return;
+		}
 		if (tool_running) {
 			ui_tool_stream(text);
 		}
@@ -761,7 +794,7 @@ static int check_cancel(void) {
 		return cancelled;
 	}
 	if (tui) {
-		if (ui_cancel()) {
+		if (ui_cancel_copy(login_url, terminal_copy)) {
 			cancelled = 1;
 		}
 		return cancelled;
@@ -772,8 +805,12 @@ static int check_cancel(void) {
 			char keys[128];
 			ssize_t count = read(STDIN_FILENO, keys, sizeof(keys));
 			for (ssize_t i = 0; i < count; i++) {
-				if (keys[i] == '\033') {
+				if (keys[i] == '\033' || keys[i] == 3) {
 					cancelled = 1;
+				} else if (login_url && (keys[i] == 'c' || keys[i] == 'C')) {
+					int ok = terminal_copy(login_url);
+					tool_report(stderr, ok ? "Login link copied to clipboard.\n"
+						: "Could not copy the login link.\n");
 				}
 			}
 		}
@@ -1046,11 +1083,20 @@ int terminal_native_approval(const char *name, const char *path, const char *key
 
 static void present_tool(json_object *call);
 
+static int tool_visibility_hidden(const char *name) {
+
+	const struct phi_tool *tool = tool_find(name);
+	return tool && tool->hide_success;
+}
+
 static int begin_tool(json_object *call) {
 
 	if (tui) {
 		tool_presented = 0;
 		provider_tool_presented = 0;
+		tool_concealed = 0;
+		json_object_put(concealed_call);
+		concealed_call = NULL;
 		/* Keep the pre-execution preview/cancel window before any tool runs. */
 		if (cancelled) {
 			return 0;
@@ -1069,7 +1115,14 @@ static int begin_tool(json_object *call) {
 			return 0;
 		}
 		turn_tools++;
-		present_tool(call);
+		if (ui_tool_hidden(field(call, "name"))) {
+			/* Keep only the invocation needed to show a later failure. Do not
+			   open a UI card, so hidden successes never enter activity counts. */
+			tool_concealed = 1;
+			concealed_call = json_object_get(call);
+		} else {
+			present_tool(call);
+		}
 		tool_running = 1;
 		return 1;
 	}
@@ -1190,12 +1243,23 @@ static void present_tool(json_object *call) {
 static void end_tool(json_object *answer) {
 
 	tool_running = 0;
-	if (!tui || !tool_presented) {
+	if (!tui) {
 		return;
 	}
 
 	char summary[768];
-	int failed = tool_answer_failed(answer, summary, sizeof(summary));
+	int failed = concealed_call ? tool_hidden_answer_failed(answer, summary, sizeof(summary))
+		: tool_answer_failed(answer, summary, sizeof(summary));
+	if (concealed_call && failed) {
+		/* Visibility cannot suppress failed, cancelled or malformed results. */
+		present_tool(concealed_call);
+	}
+	json_object_put(concealed_call);
+	concealed_call = NULL;
+	tool_concealed = 0;
+	if (!tool_presented) {
+		return;
+	}
 	if (provider_tool_presented && !failed) {
 		ui_tool_result(answer);
 	}
@@ -1454,6 +1518,21 @@ int terminal_has_ui(void) {
 	return tui;
 }
 
+int terminal_restart_ready(void) {
+
+	if (turn_active || extension_activity_depth || codex_side_active()) {
+		return 0;
+	}
+	if (tui) {
+		char *draft = ui_editor_text();
+		int ready = draft && !*draft && !ui_peek_queued();
+		free(draft);
+		return ready;
+	}
+
+	return 0;
+}
+
 void terminal_help(void) {
 
 	static const char *const keys[] = {
@@ -1461,6 +1540,8 @@ void terminal_help(void) {
 		"Enter — send; Ctrl+J — insert a newline",
 		"Esc twice in NORMAL — cancel a running response",
 		"NORMAL, empty prompt: Left — background (twice first time)",
+		"Ctrl+B — go to the board (keeps draft and running work)",
+		"Ctrl+Left / Ctrl+Right — move by word in the prompt",
 		"Ctrl+\\ — detach from chat; /board — open the board",
 		"Ctrl+C — cancel; twice — quit",
 		"Up/Down past the edge — earlier messages",
@@ -2048,6 +2129,22 @@ static void theme_transcript_changed(const char *path, int inherit) {
 	}
 }
 
+static void visible_diff(char kind, size_t line, const char *text, size_t size,
+	size_t first, size_t end) {
+
+	if (!tool_concealed) ui_diff_highlight(kind, line, text, size, first, end);
+}
+
+static void visible_write_preview(const char *text) {
+
+	if (!tool_concealed) ui_write_preview(text);
+}
+
+static void visible_read_preview(const char *text) {
+
+	if (!tool_concealed) ui_read_preview(text);
+}
+
 struct agent_host terminal_open(const char *model, const char *effort) {
 
 	initial_effort = effort;
@@ -2059,6 +2156,7 @@ struct agent_host terminal_open(const char *model, const char *effort) {
 
 	struct tool_host host = {
 		.display = display, .styled = styled, .cancel = check_cancel, .banners = 1};
+	ui_set_temporary(transcript_temporary());
 	tui = !headless && isatty(STDIN_FILENO) && isatty(STDOUT_FILENO) && ui_open(model, effort);
 	if (headless) {
 		host.banners = 0;
@@ -2068,13 +2166,14 @@ struct agent_host terminal_open(const char *model, const char *effort) {
 		ui_account_usage("wk --");
 		ui_set_idle(refresh_usage);
 		ui_set_tool_renderer(restored_render);
+		ui_set_tool_visibility(tool_visibility_hidden);
 		ui_set_turn_command(turn_command);
 		ui_set_extension_hooks(extension_key, extension_completions);
 		ui_set_markdown_hook(markdown_transform);
 		host.banners = 0;
-		host.diff = ui_diff_highlight;
-		host.write_preview = ui_write_preview;
-		host.read_preview = ui_read_preview;
+		host.diff = visible_diff;
+		host.write_preview = visible_write_preview;
+		host.read_preview = visible_read_preview;
 	}
 	tools_set_host(&host);
 
@@ -2613,15 +2712,47 @@ int terminal_copy(const char *text) {
 	return 1;
 }
 
+static void login_link(const char *url) {
+
+	login_url = url;
+}
+
 int terminal_login(void) {
 
 	cancelled = 0;
+	int was_busy = busy_terminal;
+	const int signals[] = {SIGINT, SIGTERM, SIGHUP};
+	struct sigaction previous[3], action = {0};
+	int guarded[3] = {0};
+	if (!tui && !headless && !was_busy) {
+		action.sa_handler = exit_on_signal;
+		sigemptyset(&action.sa_mask);
+		for (size_t i = 0; i < 3; i++) {
+			guarded[i] = !sigaction(signals[i], &action, &previous[i]);
+		}
+	}
 	if (tui) {
 		ui_busy(1);
+	} else if (!headless && !busy_terminal && isatty(STDIN_FILENO) &&
+		!tcgetattr(STDIN_FILENO, &saved_terminal)) {
+		struct termios mode = saved_terminal;
+		mode.c_lflag &= (tcflag_t) ~(ICANON | ECHO | ISIG);
+		mode.c_cc[VMIN] = mode.c_cc[VTIME] = 0;
+		if (!tcsetattr(STDIN_FILENO, TCSANOW, &mode)) {
+			busy_terminal = 1;
+		}
 	}
-	int ok = codex_auth_login(check_cancel);
+	int ok = codex_auth_login(check_cancel, login_link);
+	login_url = NULL;
 	if (tui) {
 		ui_busy(0);
+	} else if (!was_busy) {
+		restore_terminal();
+	}
+	for (size_t i = 0; i < 3; i++) {
+		if (guarded[i]) {
+			sigaction(signals[i], &previous[i], NULL);
+		}
 	}
 	cancelled = 0;
 

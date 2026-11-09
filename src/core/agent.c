@@ -222,6 +222,10 @@ void agent_clear(struct agent *agent) {
 
 int agent_resume(struct agent *agent, struct session_entry *entry, char *error, size_t size) {
 
+	if (transcript_temporary()) {
+		snprintf(error, size, "Temporary chats cannot resume saved sessions. Start Phi without --temp to resume.");
+		return 0;
+	}
 	route_forget();
 	struct session_tree tree = {0};
 	uint64_t source_head = 0;

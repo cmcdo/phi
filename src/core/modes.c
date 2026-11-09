@@ -556,6 +556,7 @@ static void rpc_command(json_object *command) {
 		json_object_object_add(data, "thinkingLevel", json_object_new_string(current_effort()));
 		json_object_object_add(data, "isStreaming", json_object_new_boolean(host_busy()));
 		copy_field(data, "sessionFile", session, "file");
+		copy_field(data, "temporary", session, "temporary");
 		if (*field(session, "name")) {
 			copy_field(data, "sessionName", session, "name");
 		}

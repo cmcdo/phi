@@ -304,7 +304,11 @@ static void ensure_transcript(void) {
 
 static json_object *run_command(const char *command) {
 
-	if (command_run(agent, settings, command) == 2) {
+	int result = command_run(agent, settings, command);
+	if (result == 3) {
+		return error("Enter /restart locally in the chat terminal, not through an extension or bridge.");
+	}
+	if (result == 2) {
 		shutdown_requested = 1;
 	}
 
@@ -511,6 +515,7 @@ static json_object *get_session(void) {
 	char cwd[4096];
 	const char *effort = agent->host.effort ? agent->host.effort() : agent->effort;
 	json_object_object_add(answer, "file", json_object_new_string(agent->transcript.path));
+	json_object_object_add(answer, "temporary", json_object_new_boolean(transcript_temporary()));
 	json_object_object_add(answer, "name", json_object_new_string(session_name(names)));
 	json_object_object_add(answer, "head", json_object_new_int64((int64_t)agent->transcript.head));
 	json_object_object_add(answer, "idle", json_object_new_boolean(!busy));

@@ -667,7 +667,7 @@ static int tool_card_replace(size_t index, int expand) {
 	size_t old_end = card->end;
 	size_t old = old_end - card->start;
 	size_t size = expand ? card->full_len : card->folded_len;
-	if (used - old + size >= LOG_SIZE) {
+	if (!transcript_reserve(used - old + size + 1)) {
 		return 0;
 	}
 	int columns = ui_chat_columns ? ui_chat_columns : COLS, width = text_width(columns);
@@ -774,10 +774,21 @@ static void tool_card_fold(size_t start, size_t end, const char *failure, int fi
 		previous->full_len + 1 + end - start < LOG_SIZE;
 	if (merge) {
 		for (size_t i = previous->end; i < start; i++) {
-			if (transcript[i] != '\n' && transcript[i] != '\r') {
-				merge = 0;
-				break;
+			if (transcript[i] == '\n' || transcript[i] == '\r') {
+				continue;
 			}
+			/* Hidden reasoning leaves an invisible compatibility anchor between
+			   model requests. It is not visible prose and must not split routine
+			   activity. Visible/native-rendered reasoning remains a boundary. */
+			if (!skin.thinking_visible && !*skin_message_renderer(&skin, SEM_THINKING) &&
+				i + 3 <= start && !memcmp(transcript + i, "\xee\x80\x87", 3) &&
+				transcript_style[i] == 80 && transcript_style[i + 1] == 80 &&
+				transcript_style[i + 2] == 80) {
+				i += 2;
+				continue;
+			}
+			merge = 0;
+			break;
 		}
 	}
 	struct tool_card card = {0};
@@ -811,7 +822,7 @@ static void tool_card_fold(size_t start, size_t end, const char *failure, int fi
 	card.full_len = prefix + end - start;
 	card.fixed = fixed;
 	card.folded_len = fixed ? card.full_len : len;
-	if (used - (end - card.start) + len >= LOG_SIZE) {
+	if (used - (end - card.start) + len >= transcript_limit()) {
 		return;
 	}
 	card.full = malloc(card.full_len);
@@ -870,12 +881,14 @@ static void tool_card_fold(size_t start, size_t end, const char *failure, int fi
 	}
 	if (fixed) {
 		transcript_revision++;
-		return;
+	} else {
+		tool_card_replace(tool_card_count - 1, 0);
+		if (tool_details) {
+			tool_card_replace(tool_card_count - 1, 1);
+		}
 	}
-	tool_card_replace(tool_card_count - 1, 0);
-	if (tool_details) {
-		tool_card_replace(tool_card_count - 1, 1);
-	}
+	/* Evicting an old expanded card also removes its extra display budget. */
+	transcript_make_room(0);
 }
 
 static void tool_card_toggle(void) {
@@ -910,6 +923,10 @@ static void tool_card_toggle(void) {
 		if (!tool_cards[i].fixed && tool_cards[i].expanded != expanding) {
 			tool_card_replace(i, expanding);
 		}
+	}
+	transcript_make_room(0);
+	if (!tool_details) {
+		transcript_compact();
 	}
 	presentation_batch--;
 	scroll_offset = bottom_offset;
@@ -971,7 +988,7 @@ void ui_tool_end(const char *summary, int failed) {
 			memset(styles + n, 18, timing);
 			n += timing;
 		}
-		if (used + n < LOG_SIZE) {
+		if (used + n < transcript_limit() && transcript_reserve(used + n + 1)) {
 			memmove(transcript + tool_heading_end + n, transcript + tool_heading_end,
 				used - tool_heading_end + 1);
 			memmove(transcript_style + tool_heading_end + n, transcript_style + tool_heading_end,

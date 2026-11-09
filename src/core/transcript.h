@@ -26,6 +26,9 @@ int transcript_reopen(
 /* --no-session: never create transcript files (writes become no-ops). */
 void transcript_disable(int disabled);
 int transcript_disabled(void);
+/* --temp: process-lifetime, set before agent/UI/extension startup. */
+void transcript_set_temporary(void);
+int transcript_temporary(void);
 void transcript_sync(struct transcript *t, json_object *history);
 void transcript_compact(struct transcript *t, json_object *history);
 /* Copy an existing v2 node verbatim into a fresh continuation file. */

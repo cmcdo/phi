@@ -3,7 +3,8 @@
 #include <curl/curl.h>
 /* Caller owns headers. Normal calls refresh under a process lock; quiet calls only read. */
 struct curl_slist *codex_auth_headers_cancel(int (*cancel)(void));
-int codex_auth_login(int (*cancel)(void));
+/* link borrows the login URL while waiting; NULL clears it before exchange/return. */
+int codex_auth_login(int (*cancel)(void), void (*link)(const char *url));
 int codex_auth_logout(void);
 struct curl_slist *codex_auth_headers(void);
 struct curl_slist *codex_auth_headers_quiet(void);

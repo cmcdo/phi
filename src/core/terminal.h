@@ -30,6 +30,7 @@ void terminal_side_begin(int id, const char *title);
 void terminal_side_text(int id, const char *text);
 void terminal_side_end(int id, const char *text, const char *error);
 int terminal_has_ui(void);
+int terminal_restart_ready(void); /* no active work, draft, or queued UI input */
 void terminal_board(void);
 void terminal_help(void);
 int terminal_extension_cancel(void);

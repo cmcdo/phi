@@ -33,4 +33,42 @@ static inline int tool_answer_failed(json_object *answer, char *summary, size_t 
 
 	return *error || timed_out || aborted || (has_exit && code != 0 && !killed);
 }
+/* Conceal only unambiguous successes. This does not change execution status or
+   the existing classification of ordinary visible job results. */
+static inline int tool_hidden_answer_failed(json_object *answer, char *summary, size_t size) {
+
+	if (!json_object_is_type(answer, json_type_object)) {
+		snprintf(summary, size, "Invalid tool result");
+		return 1;
+	}
+	const char *flags[] = {"timed_out", "cancelled", "killed", "is_error"};
+	for (size_t i = 0; i < sizeof(flags) / sizeof(*flags); i++) {
+		json_object *value = NULL;
+		if (json_object_object_get_ex(answer, flags[i], &value) &&
+			!json_object_is_type(value, json_type_boolean)) {
+			snprintf(summary, size, "Invalid tool status");
+			return 1;
+		}
+	}
+	json_object *value = NULL;
+	if ((json_object_object_get_ex(answer, "error", &value) &&
+			!json_object_is_type(value, json_type_string)) ||
+		(json_object_object_get_ex(answer, "exit_code", &value) &&
+			!json_object_is_type(value, json_type_int))) {
+		snprintf(summary, size, "Invalid tool status");
+		return 1;
+	}
+	if (tool_answer_failed(answer, summary, size)) {
+		return 1;
+	}
+	if (json_object_get_boolean(json_object_object_get(answer, "killed"))) {
+		snprintf(summary, size, "Killed");
+		return 1;
+	}
+	if (json_object_get_boolean(json_object_object_get(answer, "is_error"))) {
+		snprintf(summary, size, "Tool reported an error");
+		return 1;
+	}
+	return 0;
+}
 #endif

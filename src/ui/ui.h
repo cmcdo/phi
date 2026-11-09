@@ -10,6 +10,8 @@ void ui_set_extension_models(size_t (*count)(void),
 	int (*at)(size_t, const char **, const char **, const char **, int64_t *));
 struct session_entry;
 struct session_tree;
+/* Configure before ui_open; temporary chats never claim draft recovery slots. */
+void ui_set_temporary(int temporary);
 int ui_open(const char *model, const char *effort);
 int ui_native_transition_register(
 	const char *owner, const char *id, const char *path, char *problem, size_t capacity);
@@ -42,6 +44,9 @@ void ui_assistant(const char *text);
 /* Provider-visible reasoning summaries only; complete seals the current block. */
 void ui_thinking(const char *text, int complete);
 void ui_user(const char *text);
+/* Tool-owned display policy; errors and approvals must still render. */
+void ui_set_tool_visibility(int (*hidden)(const char *name));
+int ui_tool_hidden(const char *name);
 void ui_tool_begin(const char *name, const char *detail);
 /* Snapshot actual invocation/result for semantic rendering; never execute them. */
 void ui_tool_invocation(json_object *call);
@@ -76,6 +81,8 @@ void ui_pending_tool(json_object *call);
 /* Interactive pre-execution window; returns nonzero on cancellation. */
 int ui_tool_guard(json_object *call, int approval); /* 1 permit, 0 deny */
 int ui_cancel(void);
+/* Scoped login shortcut: plain c/C copies text without editing the draft. */
+int ui_cancel_copy(const char *text, int (*copy)(const char *));
 void ui_request_cancel(void); /* host cancellation also unwinds approval/dialog waits */
 void ui_clear(void);
 void ui_reload_theme(void);

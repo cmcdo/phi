@@ -836,6 +836,8 @@ static int register_tool_ex(
 	json_object *guidelines = json_object_object_get(definition, "prompt_guidelines");
 	json_object *mode = json_object_object_get(definition, "execution_mode");
 	json_object *structured = json_object_object_get(definition, "structured");
+	json_object *hide_success = NULL;
+	int has_hide_success = json_object_object_get_ex(definition, "hide_success", &hide_success);
 	json_object *annotations = json_object_object_get(definition, "annotations");
 	const char *problem = NULL;
 	if (label && !short_text(label, 64)) {
@@ -855,6 +857,8 @@ static int register_tool_ex(
 		problem = "execution_mode must be sequential or parallel";
 	} else if (structured && !json_object_is_type(structured, json_type_boolean)) {
 		problem = "structured must be true or false";
+	} else if (has_hide_success && !json_object_is_type(hide_success, json_type_boolean)) {
+		problem = "hide_success must be true or false";
 	} else if (annotations && !annotations_valid(annotations)) {
 		problem =
 			"annotations takes readOnlyHint, destructiveHint, idempotentHint and openWorldHint as booleans";
@@ -877,6 +881,7 @@ static int register_tool_ex(
 		return -1;
 	}
 	tool->structured = structured ? json_object_get_boolean(structured) : 1;
+	tool->info.hide_success = hide_success && json_object_get_boolean(hide_success);
 	tool->parallel = mode && !strcmp(json_object_get_string(mode), "parallel");
 	if (label) {
 		tool->info.label = strdup(json_object_get_string(label));

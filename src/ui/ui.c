@@ -121,6 +121,8 @@ static struct phi_rect ui_host_boxes[PHI_HOST_COUNT];
 #define KEY_COMMAND_MENU (KEY_MAX + 10)
 #define KEY_CHAT_BACKGROUNDED (KEY_MAX + 11)
 #define KEY_SHIFT_SPACE (KEY_MAX + 12)
+#define KEY_CTRL_LEFT (KEY_MAX + 13)
+#define KEY_CTRL_RIGHT (KEY_MAX + 14)
 #define KEY_CTRL_LETTER_BASE (KEY_MAX + 32)
 static WINDOW *key_window;
 static int report_state; /* unknown terminal report currently being drained */
@@ -135,6 +137,7 @@ static char *transcript = transcript_storage;
 static unsigned char transcript_style_storage[LOG_SIZE];
 static unsigned char *transcript_style = transcript_style_storage;
 static size_t used;
+static size_t transcript_capacity = LOG_SIZE;
 
 /* A saved block uses the same styled-byte grammar without changing live UI
    state. No event loop or extension callback runs while these sinks are used. */
@@ -228,6 +231,7 @@ static int ctrl_c_armed;
    First foreground backgrounding requires NORMAL-mode Left twice; revisits
    need one. Both require an empty composer and never stop running work. */
 static int chat_turns, left_armed, chat_backgrounded;
+static int board_preserve_background;
 static double left_armed_at;
 /* Esc while Phi works: the first press warns, a second within 2.5 s stops
    the turn (a running tool included), so one stray Esc cannot. */
@@ -593,6 +597,71 @@ static void tool_cards_drop(size_t bytes) {
 	tool_header_start = tool_header_start < bytes ? 0 : tool_header_start - bytes;
 }
 
+/* Retain the normal folded-cache budget, plus only the bytes exposed by
+   expanded cards. Each of the bounded card slots holds less than LOG_SIZE. */
+#define TRANSCRIPT_EXPAND_LIMIT ((size_t)LOG_SIZE * (TOOL_CARD_LIMIT + 1))
+
+static size_t transcript_limit(void) {
+
+	size_t limit = LOG_SIZE;
+	for (size_t i = 0; i < tool_card_count; i++) {
+		struct tool_card *card = &tool_cards[i];
+		if (!card->fixed && card->expanded && card->full_len > card->folded_len) {
+			limit += card->full_len - card->folded_len;
+		}
+	}
+
+	return limit;
+}
+
+/* Allocate the text/style pair atomically when expanded cards need space. */
+static int transcript_reserve(size_t needed) {
+
+	if (needed <= transcript_capacity) {
+		return 1;
+	}
+	if (needed > TRANSCRIPT_EXPAND_LIMIT) {
+		return 0;
+	}
+	size_t capacity = transcript_capacity;
+	while (capacity < needed) {
+		capacity = capacity > TRANSCRIPT_EXPAND_LIMIT / 2 ? TRANSCRIPT_EXPAND_LIMIT
+			: capacity * 2;
+	}
+	char *text = malloc(capacity);
+	unsigned char *styles = malloc(capacity);
+	if (!text || !styles) {
+		free(text);
+		free(styles);
+		return 0;
+	}
+	memcpy(text, transcript, used + 1);
+	memcpy(styles, transcript_style, used);
+	if (transcript != transcript_storage) {
+		free(transcript);
+		free(transcript_style);
+	}
+	transcript = text;
+	transcript_style = styles;
+	transcript_capacity = capacity;
+
+	return 1;
+}
+
+static void transcript_compact(void) {
+
+	if (transcript == transcript_storage || used >= LOG_SIZE) {
+		return;
+	}
+	memcpy(transcript_storage, transcript, used + 1);
+	memcpy(transcript_style_storage, transcript_style, used);
+	free(transcript);
+	free(transcript_style);
+	transcript = transcript_storage;
+	transcript_style = transcript_style_storage;
+	transcript_capacity = LOG_SIZE;
+}
+
 static int visual_mode; /* 1 character, 2 rectangular block */
 static size_t visual_anchor;
 static wchar_t find_character;
@@ -723,7 +792,11 @@ static int read_key_input(wint_t *key, int wait_ms) {
 		}
 	}
 	if (kind == KEY_CODE_YES && *key == KEY_CHAT_BACKGROUNDED) {
-		chat_backgrounded = 1;
+		/* A board-only visit is navigation, not a background-state change. */
+		if (!board_preserve_background) {
+			chat_backgrounded = 1;
+		}
+		board_preserve_background = 0;
 		left_armed = 0;
 		dirty = 1;
 		/* A same-size reattach can coalesce both SIGWINCH notifications.
@@ -749,6 +822,25 @@ static int read_key_input(wint_t *key, int wait_ms) {
 
 #include "clipboard.inc"
 #include "theme.inc"
+
+static int temporary_chat;
+
+void ui_set_temporary(int temporary) {
+
+	temporary_chat = temporary != 0;
+}
+
+static int (*tool_visibility_hidden)(const char *name);
+
+void ui_set_tool_visibility(int (*hidden)(const char *name)) {
+
+	tool_visibility_hidden = hidden;
+}
+
+int ui_tool_hidden(const char *name) {
+
+	return tool_visibility_hidden && tool_visibility_hidden(name);
+}
 
 static int read_key(wint_t *key, int wait_ms) {
 
@@ -1122,6 +1214,9 @@ static size_t shell_projection_end(size_t end, int width) {
 
 static int pending_display_rows(int cols) {
 
+	if (pending_active && !pending_approval && ui_tool_hidden(pending_name)) {
+		return 0;
+	}
 	return pending_active && cols >= 40 &&
 			(pending_approval || !pending_is_shell() || tool_details || !skin.tool_live)
 		? pending_height(cols)
@@ -2012,7 +2107,7 @@ void ui_pending_tool(json_object *call) {
 		(!full && strlen(text) >= sizeof(pending_arguments)) ||
 		json_object_get_boolean(json_object_object_get(call, "arguments_truncated"));
 	pending_decode();
-	if (pending_is_shell()) {
+	if (pending_is_shell() && !ui_tool_hidden(pending_name)) {
 		/* Argument streaming starts with an empty object. Keep the previous
            completed command until the next command text actually arrives. */
 		const char *detail = pending_detail();
@@ -2206,6 +2301,10 @@ static int ui_open_mode(
 	define_key("\033OC", KEY_RIGHT);
 	define_key("\033[D", KEY_LEFT);
 	define_key("\033OD", KEY_LEFT);
+	define_key("\033[1;5D", KEY_CTRL_LEFT);
+	define_key("\033[57350;5u", KEY_CTRL_LEFT);
+	define_key("\033[1;5C", KEY_CTRL_RIGHT);
+	define_key("\033[57351;5u", KEY_CTRL_RIGHT);
 	define_key("\033[H", KEY_HOME);
 	define_key("\033OH", KEY_HOME);
 	define_key("\033[F", KEY_END);
@@ -2263,7 +2362,7 @@ static int ui_open_mode(
 	if (recover) {
 		(void)recovery_open(); /* Embedded editors never claim a chat's recovery file. */
 	}
-	recovery_failed = recover && recovery_dir < 0 &&
+	recovery_failed = recover && !temporary_chat && recovery_dir < 0 &&
 		(!getenv("PHI_DRAFT_RECOVERY") || strcmp(getenv("PHI_DRAFT_RECOVERY"), "0"));
 	if (theme_status < 0) {
 		if (editor_host_feedback) {
@@ -2399,6 +2498,9 @@ void ui_close(void) {
 	command_query = command_query_initial;
 	command_query_capacity = INPUT_SIZE;
 	command_query[0] = 0;
+	used = 0;
+	transcript[0] = 0;
+	transcript_compact();
 }
 
 /* The reply being streamed, for render_markdown: where it starts in the
@@ -2481,6 +2583,51 @@ static void capture_styled(struct styled_capture *out, const char *text, int sty
 	}
 }
 
+static void transcript_drop_prefix(size_t drop) {
+
+	/* Prefer trimming an entire old line, as in the ordinary live cache. */
+	while (drop < used && transcript[drop - 1] != '\n') {
+		drop++;
+	}
+	tool_cards_drop(drop);
+	semantic_messages_drop(drop);
+	if (assistant_open) {
+		if (drop > assistant_start) {
+			assistant_open = 0;
+		} else {
+			assistant_start -= drop;
+		}
+	}
+	memmove(transcript, transcript + drop, used - drop + 1);
+	memmove(transcript_style, transcript_style + drop, used - drop);
+	used -= drop;
+	if (tool_heading_valid) {
+		if (drop >= tool_heading_end) {
+			tool_heading_valid = 0;
+		} else {
+			tool_heading_end -= drop;
+		}
+	}
+}
+
+/* Incoming chunks remain bounded by LOG_SIZE. Dropping an expanded card can
+   reduce the budget again, so recompute it until the retained tail fits. */
+static void transcript_make_room(size_t incoming) {
+
+	size_t needed = used + incoming + 1, limit = transcript_limit();
+	transcript_reserve(needed < limit ? needed : limit);
+	for (;;) {
+		limit = transcript_limit();
+		if (limit > transcript_capacity) {
+			limit = transcript_capacity;
+		}
+		if (used + incoming < limit) {
+			break;
+		}
+		transcript_drop_prefix(used + incoming - (limit - 1));
+	}
+}
+
 static void append_styled(const char *text, int user) {
 
 	if (styled_capture) {
@@ -2537,37 +2684,14 @@ static void append_styled(const char *text, int user) {
 		n = LOG_SIZE - 1;
 		used = 0;
 		tool_heading_valid = 0;
+		int details = tool_details;
 		tool_cards_clear();
+		tool_details = details;
 		semantic_messages_clear();
 		tool_body_start = 0;
 		assistant_open = 0;
 	}
-	if (used + n >= LOG_SIZE) {
-		size_t drop = used + n - (LOG_SIZE - 1);
-		/* Prefer trimming an entire old line. */
-		while (drop < used && transcript[drop - 1] != '\n') {
-			drop++;
-		}
-		tool_cards_drop(drop);
-		semantic_messages_drop(drop);
-		if (assistant_open) {
-			if (drop > assistant_start) {
-				assistant_open = 0;
-			} else {
-				assistant_start -= drop;
-			}
-		}
-		memmove(transcript, transcript + drop, used - drop);
-		memmove(transcript_style, transcript_style + drop, used - drop);
-		used -= drop;
-		if (tool_heading_valid) {
-			if (drop >= tool_heading_end) {
-				tool_heading_valid = 0;
-			} else {
-				tool_heading_end -= drop;
-			}
-		}
-	}
+	transcript_make_room(n);
 	memcpy(transcript + used, text, n);
 	memset(transcript_style + used, user, n);
 	used += n;
@@ -2883,6 +3007,7 @@ void ui_clear(void) {
 	tool_body_start = 0;
 	used = 0;
 	transcript[0] = 0;
+	transcript_compact();
 	transcript_revision++;
 	scroll_offset = 0;
 	tool_heading_valid = tool_active = 0;
@@ -3339,23 +3464,36 @@ static void conversation_search(void) {
 	draw(1);
 }
 
-#include "keys.inc"
-
-int ui_board(void) {
+static int ui_open_board(int background) {
 
 	if (editor_host_redraw || !getenv("PHI_CHAT_ID")) {
 		return 0;
 	}
-	chat_backgrounded = 1;
-	normal_mode = 0;
-	esc_armed = left_armed = 0;
+	board_preserve_background = !background;
+	if (background) {
+		chat_backgrounded = 1;
+		normal_mode = 0;
+		esc_armed = left_armed = 0;
+	}
 	fputs("\033]777;phi-detach\007", stdout);
 	fflush(stdout);
 
 	return 1;
 }
 
+#include "keys.inc"
+
+int ui_board(void) {
+
+	return ui_open_board(1);
+}
+
 int ui_cancel(void) {
+
+	return ui_cancel_copy(NULL, NULL);
+}
+
+int ui_cancel_copy(const char *text, int (*copy)(const char *)) {
 
 	if (idle_callback) {
 		idle_callback();
@@ -3368,6 +3506,13 @@ int ui_cancel(void) {
 	wint_t key;
 	int kind;
 	while ((kind = read_key(&key, 0)) != ERR) {
+		if (text && copy && !pasting && !history_view_paste(-1) && kind == OK &&
+			(key == 'c' || key == 'C')) {
+			int ok = copy(text);
+			ui_notice(ok ? "Login link copied to clipboard." : "Could not copy the login link.",
+				ok ? 0 : 1);
+			continue;
+		}
 		int action = edit_key(kind, key);
 		if (action == 3) {
 			cancel = 1;

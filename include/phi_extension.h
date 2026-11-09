@@ -321,9 +321,11 @@ struct phi_api_v1 {
          get_custom_entries {custom_type?}    -> {entries:[{extension,custom_type,data,time}]}
        Session
          get_session        {} -> {file, name, head, idle, mode, has_ui, cwd, model,
-                                   effort, tokens_estimate, context_window}
+                                   effort, tokens_estimate, context_window, temporary}
                             mode: interactive|print|json|rpc; has_ui: dialogs
-                            can be answered (interactive and rpc)
+                            can be answered (interactive and rpc). temporary:true
+                            means core --temp is active (file is empty). Extensions
+                            must not capture this chat or write it to memory.
          get_branch         {} -> {items:[conversation items on the active branch],
                             streaming?:{text, tool?}}  streaming: the reply still
                             arriving (text so far, a tool call being written)
@@ -437,8 +439,14 @@ struct phi_api_v1 {
           "prompt_snippet": "one line added to the system prompt",
           "prompt_guidelines": ["up to 8 usage rules"],
           "execution_mode": "sequential"|"parallel", "structured": true,
+          "hide_success": true,
           "annotations": {"readOnlyHint", "destructiveHint", "idempotentHint",
                           "openWorldHint": booleans, as MCP tool annotations}}
+       hide_success is optional and defaults to false. In the terminal UI it
+       hides routine previews and successful cards for this tool; failures and
+       approval prompts remain visible. It does not hide activity from the
+       model, other clients, or saved transcripts. Restored calls use the current
+       tool registration; if the tool is unavailable, they remain visible.
        Annotations are hints, not verified; a permission extension can use them
        (get_all_tools {details:true}) to decide which calls to confirm. Missing
        hints mean: not read-only, may be destructive, may reach an open world.

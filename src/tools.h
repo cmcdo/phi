@@ -16,6 +16,7 @@ struct phi_tool {
 	/* MCP-style hints as a JSON object ({"readOnlyHint":true,...}), or NULL.
        Not verified: a permission extension may use them to decide what to confirm. */
 	const char *annotations;
+	int hide_success; /* suppress routine TUI presentation, not errors or approvals */
 };
 
 /* Optional presentation/cancellation hooks. Tools do not depend on ncurses. */
@@ -47,6 +48,7 @@ struct tool_provider {
 void tools_set_provider(const struct tool_provider *provider);
 int tool_builtin_exists(const char *name);
 void tools_reap_jobs(void); /* nonblocking maintenance for persistent jobs */
+int tools_jobs_pending(void); /* running jobs, collectors, or unread output */
 void tools_abort_jobs(void); /* signal-path best-effort termination */
 void tools_shutdown(void); /* terminate and reap persistent background jobs */
 void tools_user_pty(int columns); /* next/current user shell: 0 restores pipe mode */

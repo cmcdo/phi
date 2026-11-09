@@ -5,6 +5,7 @@
 struct agent;
 struct settings;
 /* NULL agent: workspace/new-chat defaults; session-only commands fail closed. */
+/* Returns 0 for a prompt, 1 handled, 2 quit, 3 local interactive restart. */
 int command_run(struct agent *agent, struct settings *settings, const char *message);
 
 /* Shared by local dispatch and the input suggestions. */
@@ -37,6 +38,7 @@ enum {
 	CMD_THEME,
 	CMD_HISTORY,
 	CMD_BOARD,
+	CMD_RESTART,
 	CMD_QUIT
 };
 
@@ -67,7 +69,9 @@ static const struct phi_command phi_commands[] = {{"/settings", "Show current se
 	{"/resources", "List skills and prompt templates", 0},
 	{"/theme", "List themes, or save this transcript's theme: /theme NAME", 1},
 	{"/history", "Browse saved history from disk without loading the whole transcript", 0},
-	{"/board", "Open the chat board without stopping this chat", 0}, {"/quit", "Exit Phi", 0}};
+	{"/board", "Open the chat board without stopping this chat", 0},
+	{"/restart", "Restart this saved chat using the latest binary (idle only)", 0},
+	{"/quit", "Exit Phi", 0}};
 #define PHI_COMMAND_COUNT (sizeof(phi_commands) / sizeof(*phi_commands))
 
 static inline const char *command_description(const struct phi_command *command, int workspace) {

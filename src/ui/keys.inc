@@ -539,6 +539,12 @@ static int edit_key_raw(int kind, wint_t key) {
 		case KEY_BTAB:
 			cycle_effort();
 			break;
+		case KEY_CTRL_LEFT:
+			cursor = previous_word(cursor);
+			break;
+		case KEY_CTRL_RIGHT:
+			cursor = next_word(cursor);
+			break;
 		case KEY_LEFT:
 			if (cursor) {
 				cursor--;
@@ -758,7 +764,8 @@ static int extension_key_name(int kind, wint_t key, char *name, size_t size) {
 	} special[] = {{KEY_UP, "up"}, {KEY_DOWN, "down"}, {KEY_LEFT, "left"}, {KEY_RIGHT, "right"},
 		{KEY_HOME, "home"}, {KEY_END, "end"}, {KEY_PPAGE, "pageup"}, {KEY_NPAGE, "pagedown"},
 		{KEY_DC, "delete"}, {KEY_BACKSPACE, "backspace"}, {KEY_ENTER, "enter"},
-		{KEY_BTAB, "shift+tab"}};
+		{KEY_BTAB, "shift+tab"}, {KEY_CTRL_LEFT, "ctrl+left"},
+		{KEY_CTRL_RIGHT, "ctrl+right"}};
 
 	if (kind == KEY_CODE_YES) {
 		if (key >= KEY_F(1) && key <= KEY_F(12)) {
@@ -961,6 +968,14 @@ static void paste_snapshot_finish(void) {
 
 static int edit_key(int kind, wint_t key) {
 
+	/* Navigation, not an editor motion: preserve the draft and running turn.
+	   Handle it before inspectors, Vim prefixes and input hooks consume it. */
+	if (!pasting && !history_view_paste(-1) && kind == OK && key == 2) {
+		if (!ui_open_board(0)) {
+			ui_notice("The board requires an interactive hosted chat.", 0);
+		}
+		return 0;
+	}
 	if (kind == KEY_CODE_YES && key == KEY_PASTE_END) {
 		history_view_paste(0);
 	}
@@ -1013,7 +1028,8 @@ static int edit_key(int kind, wint_t key) {
 	/* These keys change modes or the viewport, never composer contents. */
 	if ((kind == OK && (key == 3 || key == 4 || key == 27)) ||
 		(kind == KEY_CODE_YES &&
-			(key == KEY_LEFT || key == KEY_RIGHT || key == KEY_HOME || key == KEY_END ||
+			(key == KEY_LEFT || key == KEY_RIGHT || key == KEY_CTRL_LEFT || key == KEY_CTRL_RIGHT ||
+				key == KEY_HOME || key == KEY_END ||
 				key == KEY_RESIZE || key == KEY_MOUSE || key == KEY_PPAGE || key == KEY_NPAGE ||
 				key == KEY_BTAB || key == KEY_FOCUS_IN || key == KEY_FOCUS_OUT ||
 				key == KEY_INTERRUPT || key == KEY_EOF || key == KEY_ESCAPE))) {

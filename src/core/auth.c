@@ -690,7 +690,7 @@ int codex_auth_logout(void) {
    The credential lock is taken only to save: every request takes it too,
    so holding it through the browser wait would stall Phi's other chats
    (and their logins) for minutes. The port keeps logins one at a time. */
-int codex_auth_login(int (*cancel)(void)) {
+int codex_auth_login(int (*cancel)(void), void (*link)(const char *url)) {
 
 	const char *error = "Login failed; existing credentials unchanged.";
 	char dir[4096], path[4200];
@@ -732,6 +732,9 @@ int codex_auth_login(int (*cancel)(void)) {
 		"&scope=openid%%20profile%%20email%%20offline_access&code_challenge=%s&code_challenge_method=S256"
 		"&state=%s&id_token_add_organizations=true&codex_cli_simplified_flow=true&originator=phi",
 		client_id, challenge, state);
+	if (link) {
+		link(url);
+	}
 	child = fork();
 	if (!child) {
 		int null = open("/dev/null", O_RDWR);
@@ -744,7 +747,7 @@ int codex_auth_login(int (*cancel)(void)) {
 		_exit(127);
 	}
 	tool_report(stderr,
-		"Opening browser for Phi login. Waiting up to 5 minutes; press Esc/Ctrl-C to cancel.\n"
+		"Opening browser for Phi login. Waiting up to 5 minutes; press c to copy the link, Esc/Ctrl-C to cancel.\n"
 		"If it does not open, visit:\n%s\n",
 		url);
 
@@ -798,6 +801,9 @@ int codex_auth_login(int (*cancel)(void)) {
 		}
 		goto done;
 	}
+	if (link) {
+		link(NULL);
+	}
 	json_object *credentials = exchange_code(code, verifier, cancel, &error);
 	free(code);
 	if (!credentials) {
@@ -818,6 +824,9 @@ int codex_auth_login(int (*cancel)(void)) {
 		error = "Login succeeded but credentials could not be saved; existing file preserved.";
 	}
 done:
+	if (link) {
+		link(NULL);
+	}
 	if (server >= 0) {
 		close(server);
 	}

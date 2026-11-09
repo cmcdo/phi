@@ -303,7 +303,7 @@ static const char *resume_field(json_object *item, const char *name) {
 	return json_object_is_type(value, json_type_string) ? json_object_get_string(value) : "";
 }
 
-static json_object *resume_call;
+static json_object *resume_pending_calls;
 
 static void resume_diff_text(char kind, const char *text) {
 
@@ -384,60 +384,116 @@ void ui_set_tool_renderer(
 	tool_renderer = render;
 }
 
+static void resume_tool_call(json_object *item) {
+
+	const char *arguments = resume_field(item, "arguments");
+	json_object *args = strlen(arguments) <= 1024 * 1024 ? json_tokener_parse(arguments) : NULL;
+	const char *keys[] = {"path", "command", "query", "url"}, *detail = "";
+	for (size_t i = 0; args && i < sizeof(keys) / sizeof(*keys); i++) {
+		if (*(detail = resume_field(args, keys[i]))) {
+			break;
+		}
+	}
+	char short_detail[512];
+	snprintf(short_detail, sizeof(short_detail), "%.500s", detail);
+	if (args && !strcmp(resume_field(item, "name"), "bash_poll")) {
+		snprintf(short_detail, sizeof(short_detail), "%lld",
+			(long long)json_object_get_int64(json_object_object_get(args, "job_id")));
+	}
+	for (char *p = short_detail; *p; p++) {
+		if ((unsigned char)*p < 32) {
+			*p = ' ';
+		}
+	}
+	/* tool_render handlers draw restored cards too (Pi's registerToolRenderer). */
+	json_object *render =
+		tool_renderer ? tool_renderer(item, resume_field(item, "name"), short_detail) : NULL;
+	if (render && *resume_field(render, "title")) {
+		ui_tool_title(resume_field(render, "title"));
+	}
+	ui_tool_begin(resume_field(item, "name"), short_detail);
+	ui_tool_invocation(item);
+	json_object *lines = render ? json_object_object_get(render, "lines") : NULL;
+	for (size_t i = 0; lines && i < json_object_array_length(lines); i++) {
+		json_object *line = json_object_array_get_idx(lines, i);
+		if (json_object_is_type(line, json_type_string)) {
+			ui_tool_line(json_object_get_string(line));
+		}
+	}
+	if (render) {
+		json_object_put(render);
+	}
+	if (args) {
+		json_object_put(args);
+	}
+}
+
+static json_object *resume_tool_answer(json_object *item) {
+
+	json_object *value = json_object_object_get(item, "output");
+	const char *text = resume_field(item, "output");
+	size_t output_size = strlen(text);
+	if (!json_object_is_type(value, json_type_string) || output_size > 4 * 1024 * 1024 ||
+		output_size != (size_t)json_object_get_string_len(value)) {
+		return NULL;
+	}
+	json_tokener *parser = json_tokener_new();
+	if (!parser) {
+		return NULL;
+	}
+	json_tokener_set_flags(parser, JSON_TOKENER_STRICT);
+	json_object *answer = json_tokener_parse_ex(parser, text, (int)output_size + 1);
+	if (json_tokener_get_error(parser) != json_tokener_success) {
+		json_object_put(answer);
+		answer = NULL;
+	}
+	json_tokener_free(parser);
+	return answer;
+}
+
 static void resume_tool(json_object *item) {
 
 	const char *type = resume_field(item, "type");
 	if (!strcmp(type, "function_call")) {
-		resume_call = item;
-		const char *arguments = resume_field(item, "arguments");
-		json_object *args = strlen(arguments) <= 1024 * 1024 ? json_tokener_parse(arguments) : NULL;
-		const char *keys[] = {"path", "command", "query", "url"}, *detail = "";
-		for (size_t i = 0; args && i < sizeof(keys) / sizeof(*keys); i++) {
-			if (*(detail = resume_field(args, keys[i]))) {
-				break;
-			}
-		}
-		char short_detail[512];
-		snprintf(short_detail, sizeof(short_detail), "%.500s", detail);
-		if (args && !strcmp(resume_field(item, "name"), "bash_poll")) {
-			snprintf(short_detail, sizeof(short_detail), "%lld",
-				(long long)json_object_get_int64(json_object_object_get(args, "job_id")));
-		}
-		for (char *p = short_detail; *p; p++) {
-			if ((unsigned char)*p < 32) {
-				*p = ' ';
-			}
-		}
-		/* tool_render handlers draw restored cards too (Pi's registerToolRenderer). */
-		json_object *render =
-			tool_renderer ? tool_renderer(item, resume_field(item, "name"), short_detail) : NULL;
-		if (render && *resume_field(render, "title")) {
-			ui_tool_title(resume_field(render, "title"));
-		}
-		ui_tool_begin(resume_field(item, "name"), short_detail);
-		ui_tool_invocation(item);
-		json_object *lines = render ? json_object_object_get(render, "lines") : NULL;
-		for (size_t i = 0; lines && i < json_object_array_length(lines); i++) {
-			json_object *line = json_object_array_get_idx(lines, i);
-			if (json_object_is_type(line, json_type_string)) {
-				ui_tool_line(json_object_get_string(line));
-			}
-		}
-		if (render) {
-			json_object_put(render);
-		}
-		if (args) {
-			json_object_put(args);
-		}
+		/* Calls may arrive as a batch before results. Pair by call_id, never
+		   the last heading: concealed results must not leak into another card. */
+		json_object_array_add(resume_pending_calls, json_object_get(item));
 	} else if (!strcmp(type, "function_call_output")) {
-		const char *output = resume_field(item, "output");
-		json_object *answer = strlen(output) <= 4 * 1024 * 1024 ? json_tokener_parse(output) : NULL;
+		json_object *resume_call = NULL;
+		const char *id = resume_field(item, "call_id");
+		size_t matched = 0, matches = 0;
+		for (size_t i = 0; *id && i < json_object_array_length(resume_pending_calls); i++) {
+			json_object *call = json_object_array_get_idx(resume_pending_calls, i);
+			if (!strcmp(id, resume_field(call, "call_id"))) {
+				matched = i;
+				matches++;
+			}
+		}
+		if (matches == 1) {
+			resume_call = json_object_get(json_object_array_get_idx(resume_pending_calls, matched));
+			json_object_array_del_idx(resume_pending_calls, matched, 1);
+		}
+		int concealed = resume_call && ui_tool_hidden(resume_field(resume_call, "name"));
+		json_object *answer = resume_tool_answer(item);
+		/* The same conservative visibility exception as live hidden tools. */
+		char summary[768] = "Saved result is invalid";
+		int failed = concealed ? tool_hidden_answer_failed(answer, summary, sizeof(summary))
+			: !answer || tool_answer_failed(answer, summary, sizeof(summary));
+		if (concealed && !failed) {
+			json_object_put(answer);
+			json_object_put(resume_call);
+			return;
+		}
+		if (resume_call) {
+			resume_tool_call(resume_call);
+		} else {
+			ui_tool_begin("unknown tool", "unmatched saved result");
+			failed = 1;
+			snprintf(summary, sizeof(summary), "Saved tool result has no matching call");
+		}
 		if (resume_call && answer) {
 			resume_tool_preview(resume_call, answer);
 		}
-		/* The same rule as the live card: errors, timeouts and non-zero exits fail. */
-		char summary[768] = "Saved result is invalid";
-		int failed = !answer || tool_answer_failed(answer, summary, sizeof(summary));
 		tool_historical = 1; /* Suppress timing, not grouping or status rendering. */
 		if (answer) {
 			ui_tool_answer(answer);
@@ -446,7 +502,7 @@ static void resume_tool(json_object *item) {
 		if (answer) {
 			json_object_put(answer);
 		}
-		resume_call = NULL;
+		json_object_put(resume_call);
 	}
 }
 
@@ -456,6 +512,7 @@ void ui_restore_history(json_object *history) {
 	int was_active = active;
 	active = 0;
 	ui_clear();
+	resume_pending_calls = json_object_new_array();
 	for (size_t i = 0; i < queued_count; i++) {
 		free(queued[i]);
 	}
@@ -516,6 +573,14 @@ void ui_restore_history(json_object *history) {
 			}
 		}
 	}
+	/* Missing results are not successes and must never disappear. */
+	for (size_t i = 0; i < json_object_array_length(resume_pending_calls); i++) {
+		resume_tool_call(json_object_array_get_idx(resume_pending_calls, i));
+		tool_historical = 1;
+		ui_tool_end("Saved tool result is unavailable", 1);
+	}
+	json_object_put(resume_pending_calls);
+	resume_pending_calls = NULL;
 	if (turn_start && turn_last > turn_start) {
 		turn_done_line((long)(turn_last - turn_start), turn_last);
 	}

@@ -156,6 +156,12 @@ int command_run(struct agent *agent, struct settings *settings, const char *mess
 	switch (command) {
 	case CMD_QUIT:
 		return 2;
+	case CMD_RESTART:
+		if (!terminal_has_ui()) {
+			tool_report(stderr, "\n/restart is only available in an interactive terminal chat.\n");
+			break;
+		}
+		return 3;
 	case CMD_BOARD:
 		if (agent) {
 			terminal_board();
@@ -346,7 +352,9 @@ int command_run(struct agent *agent, struct settings *settings, const char *mess
 		break;
 	case CMD_SESSION:
 		tool_report(stdout, "\nSession: %s\nMessages: %zu\nModel: %s\nEffort: %s\n",
-			*agent->transcript.path ? agent->transcript.path : "not saved yet",
+			*agent->transcript.path ? agent->transcript.path
+				: transcript_temporary() ? "temporary (not saved)"
+				: transcript_disabled() ? "saving disabled" : "not saved yet",
 			json_object_array_length(agent->history), agent->model, shown_effort);
 		break;
 	case CMD_COPY: {
@@ -394,8 +402,9 @@ int command_run(struct agent *agent, struct settings *settings, const char *mess
 				agent->transcript.path);
 		} else {
 			tool_report(stdout,
-				agent->transcript.failed
-					? "\nTranscript saving is unavailable.\n"
+				transcript_temporary() ? "\nTemporary chat: transcript saving is disabled.\n"
+					: transcript_disabled() ? "\nTranscript saving is disabled.\n"
+					: agent->transcript.failed ? "\nTranscript saving is unavailable.\n"
 					: "\nNo transcript yet; saving starts with your first message.\n");
 		}
 		break;

@@ -121,7 +121,8 @@ static void recovery_save(void) {
 
 static int recovery_open(void) {
 
-	if (getenv("PHI_DRAFT_RECOVERY") && !strcmp(getenv("PHI_DRAFT_RECOVERY"), "0")) {
+	if (temporary_chat ||
+		(getenv("PHI_DRAFT_RECOVERY") && !strcmp(getenv("PHI_DRAFT_RECOVERY"), "0"))) {
 		return 0;
 	}
 	char root[4096], cwd[4096];
